@@ -1,7 +1,5 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### Java template
-.idea
-
 # Compiled class file
 *.class
 
@@ -128,3 +126,4 @@ Temporary Items
 .apdisk
 
 !/.idea/
+!/.idea/vcs.xml
