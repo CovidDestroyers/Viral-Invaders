@@ -10,13 +10,11 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Toolkit;
-import javax.swing.Timer;
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
 import javax.imageio.*;
 import java.awt.image.*;
 import java.io.*;
@@ -149,11 +147,11 @@ public class Board  extends JPanel implements Runnable, MouseListener {
 
   @Override
   public void mousePressed(MouseEvent mouseEvent) {
-    int mousePositionX = mouseEvent.getX();
-    int mousePositionY = mouseEvent.getY();
-
-    System.out.println("Mouse position X coordinate: " + mousePositionX);
-    System.out.println("Mouse position Y coordinate: " + mousePositionY);
+//    int mousePositionX = mouseEvent.getX();
+//    int mousePositionY = mouseEvent.getY();
+//
+//    System.out.println("Mouse position X coordinate: " + mousePositionX);
+//    System.out.println("Mouse position Y coordinate: " + mousePositionY);
   }
 
   @Override
