@@ -107,10 +107,6 @@ public class Board  extends JPanel implements Runnable, MouseListener {
     graphics.setFont(mediumFont);
     graphics.drawString(getMessage(), xCoord, yCoord);
 
-    if (inGame) {
-      // graphics.drawImage(image, 0, 0, 200, 200, null);
-    }
-
     Toolkit.getDefaultToolkit().sync();
     graphics.dispose();
 
@@ -131,10 +127,9 @@ public class Board  extends JPanel implements Runnable, MouseListener {
 
       try {
         time += animationDelay;
-
         Thread.sleep(Math.max(0, time - System.currentTimeMillis()));
-
-      } catch (InterruptedException exception) {
+      }
+      catch (InterruptedException exception) {
         System.out.println(exception.getMessage());
       }
     }
