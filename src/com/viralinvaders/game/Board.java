@@ -107,6 +107,7 @@ public class Board  extends JPanel implements Runnable, MouseListener {
     graphics.setFont(mediumFont);
     graphics.drawString(getMessage(), xCoord, yCoord);
 
+    // Keeps all the graphics synced
     Toolkit.getDefaultToolkit().sync();
     graphics.dispose();
 
@@ -120,7 +121,6 @@ public class Board  extends JPanel implements Runnable, MouseListener {
 
     while (true) {
       repaint();
-
       try {
         time += animationDelay;
         Thread.sleep(Math.max(0, time - System.currentTimeMillis()));
@@ -144,11 +144,11 @@ public class Board  extends JPanel implements Runnable, MouseListener {
 
   @Override
   public void mousePressed(MouseEvent mouseEvent) {
-    int mousePositionX = mouseEvent.getX();
-    int mousePositionY = mouseEvent.getY();
-
-    System.out.println("Mouse position X coordinate: " + mousePositionX);
-    System.out.println("Mouse position Y coordinate: " + mousePositionY);
+//    int mousePositionX = mouseEvent.getX();
+//    int mousePositionY = mouseEvent.getY();
+//
+//    System.out.println("Mouse position X coordinate: " + mousePositionX);
+//    System.out.println("Mouse position Y coordinate: " + mousePositionY);
   }
 
   @Override
@@ -262,7 +262,6 @@ public class Board  extends JPanel implements Runnable, MouseListener {
 
         player.setMoveRight(true);
       }
-
       if (key == 37) {
         player.setMoveLeft(true);
       }
