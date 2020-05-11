@@ -99,4 +99,3 @@ public class Ship extends Actor implements MouseMotionListener, MouseListener {
     }
 
   }
-}
