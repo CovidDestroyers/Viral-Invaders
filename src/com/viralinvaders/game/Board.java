@@ -116,10 +116,6 @@ public class Board  extends JPanel implements Runnable, MouseListener {
   @Override
   public void run() {
     long time = System.currentTimeMillis();
-    long beforeTime = System.currentTimeMillis();
-    long timeDiff;
-    long sleep;
-
     int animationDelay = 50;
 
     while (true) {
