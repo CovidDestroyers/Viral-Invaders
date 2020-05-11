@@ -81,6 +81,7 @@ public class Board  extends JPanel implements Runnable, MouseListener {
     graphics.setColor(Color.RED);
     graphics.fillRect(player.getPosX(), player.getPosY(), 20, 20);
 
+    // Should probably be in its own method
     if (player.isMoveRight()) {
       int playerX = player.getPosX();
       int xPlusSpeed = playerX += player.getActorSpeed();
@@ -119,7 +120,7 @@ public class Board  extends JPanel implements Runnable, MouseListener {
     long timeDiff;
     long sleep;
 
-    int animationDelay = 500;
+    int animationDelay = 50;
 
     while (true) {
       repaint();
