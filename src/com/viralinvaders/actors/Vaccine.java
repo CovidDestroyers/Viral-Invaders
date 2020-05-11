@@ -19,13 +19,13 @@ public class Vaccine extends Actor implements Runnable {
     thread.start();
   }
 
-  private boolean moveVaccine() {
-    if (virusArmy.checkVaccine(x, vaccineHeight)) {
-      System.out.println("HIT!");
-      vaccineState = false;
-    }
-    return true;
-  }
+  // private boolean moveVaccine() {
+  //   if (virusArmy.checkVaccine(x, vaccineHeight)) {
+  //     System.out.println("HIT!");
+  //     vaccineState = false;
+  //   }
+  //   return true;
+  // }
 
 
   @Override

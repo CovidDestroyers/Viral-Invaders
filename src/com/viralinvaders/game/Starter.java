@@ -11,7 +11,7 @@ public class Starter extends JFrame {
     setSize(Board.BOARD_WIDTH, Board.BOARD_HEIGHT);
     setLocationRelativeTo(null);
     setVisible(true);
-    setResizable(true);
+    setResizable(false);
   }
 
 

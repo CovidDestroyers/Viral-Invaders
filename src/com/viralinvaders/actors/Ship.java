@@ -14,24 +14,24 @@ public class Ship extends Actor implements MouseMotionListener, MouseListener {
   private int x = 0;
   private int heightPosition = 0;
 
-  ViralInvaders viralInvaders = null;
+  // ViralInvaders viralInvaders = null;
 
   Vaccine vaccine = null;
 
   boolean hitState = false;
 
-  public Vaccine(ViralInvaders vi) {
-    viralInvaders = vi;
-    //setting starting position of ship
-    x = (int) ((ViralInvaders.WIDTH / 2) + (SHIP_WIDTH / 2));
-    heightPosition = ViralInvaders.HEIGHT - SHIP_HEIGHT - 20;
-  }
+  // public Vaccine(ViralInvaders vi) {
+  //   viralInvaders = vi;
+  //   //setting starting position of ship
+  //   x = (int) ((ViralInvaders.WIDTH / 2) + (SHIP_WIDTH / 2));
+  //   heightPosition = ViralInvaders.HEIGHT - SHIP_HEIGHT - 20;
+  // }
 
 
   @Override
   public void mouseClicked(MouseEvent e) {
-    VirusArmy army = viralInvaders.getVirusArmy();
-    vaccine = new Vaccine(x + (int) (SHIP_WIDTH / 2), heightPosition, army);
+    // VirusArmy army = viralInvaders.getVirusArmy();
+    // vaccine = new Vaccine(x + (int) (SHIP_WIDTH / 2), heightPosition, army);
 
   }
 
@@ -47,12 +47,12 @@ public class Ship extends Actor implements MouseMotionListener, MouseListener {
 
   @Override
   public void mouseEntered(MouseEvent e) {
-    viralInvaders.pauseGame(false);
+    // viralInvaders.pauseGame(false);
   }
 
   @Override
   public void mouseExited(MouseEvent e) {
-    viralInvaders.pauseGame(true);
+    // viralInvaders.pauseGame(true);
   }
 
   @Override
@@ -63,22 +63,22 @@ public class Ship extends Actor implements MouseMotionListener, MouseListener {
   @Override
   public void mouseMoved(MouseEvent e) {
     int newX = e.getX();
-    if (newX > (ViralInvaders.WIDTH - SHIP_WIDTH - 10)) {
-
-      //Stop the ship moving off the screen
-      x = ViralInvaders.WIDTH - SHIP_WIDTH - 10;
-    } else {
-      //Set the new x position
-      x = newX;
-    }
+    // if (newX > (ViralInvaders.WIDTH - SHIP_WIDTH - 10)) {
+    //
+    //   //Stop the ship moving off the screen
+    //   x = ViralInvaders.WIDTH - SHIP_WIDTH - 10;
+    // } else {
+    //   //Set the new x position
+    //   x = newX;
+    // }
   }
 
   public void drawShip(Graphics g) {
     g.setColor(Color.GREEN);
-    g.fillRect(shipX, shipY, SHIP_WIDTH, SHIP_HEIGHT);
-    if ((vaccine != null) && (vaccine.getVaccineState())) {
-      vaccine.drawVaccine(g);
-    }
+    // g.fillRect(shipX, shipY, SHIP_WIDTH, SHIP_HEIGHT);
+    // if ((vaccine != null) && (vaccine.getVaccineState())) {
+    //   vaccine.drawVaccine(g);
+    // }
   }
 
     public boolean checkVaccine(int xVaccine, int yVaccine){
@@ -95,7 +95,7 @@ public class Ship extends Actor implements MouseMotionListener, MouseListener {
     }
 
     public void hitByAlien () {
-      viralInvaders.infectedShip();
+      // viralInvaders.infectedShip();
     }
 
   }

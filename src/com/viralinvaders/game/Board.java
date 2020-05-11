@@ -2,6 +2,7 @@ package com.viralinvaders.game;
 
 import com.viralinvaders.actors.Actor;
 import com.viralinvaders.actors.Player;
+import com.viralinvaders.actors.VirusArmy;
 
 import java.awt.event.*;
 import java.awt.Color;
@@ -24,7 +25,7 @@ import java.io.*;
 
 
 public class Board  extends JPanel implements Runnable, MouseListener {
-  public static final int BOARD_WIDTH = 720;
+  public static final int BOARD_WIDTH = 500;
   public static final int BOARD_HEIGHT= 500;
 
   private boolean inGame = true;
@@ -46,7 +47,7 @@ public class Board  extends JPanel implements Runnable, MouseListener {
    */
 
   public Board() {
-    player = new Player(BOARD_WIDTH / 2, BOARD_HEIGHT / 2, 5 );
+    player = new Player((BOARD_WIDTH / 2), (BOARD_HEIGHT / 2) + 200, 5 );
 
     addKeyListener(new TAdapter());
     addMouseListener(this);
@@ -82,8 +83,15 @@ public class Board  extends JPanel implements Runnable, MouseListener {
     graphics.fillRect(player.getPosX(), player.getPosY(), 20, 20);
 
     // For ship
-    graphics.setColor(Color.PINK);
-    graphics.fillRect(player.getPosX() - 60, player.getPosY() - 60 , 30, 30);
+    // graphics.setColor(Color.PINK);
+    // graphics.fillRect(player.getPosX() - 60, player.getPosY() - 60 , 30, 30);
+
+    // Virus Army
+    VirusArmy army = new VirusArmy();
+
+    // System.out.println(army.createVirusArmy());
+    army.addVirusToBoard(graphics);
+
 
     // Should probably be in its own method
     if (player.isMoveRight()) {
@@ -129,8 +137,6 @@ public class Board  extends JPanel implements Runnable, MouseListener {
         System.out.println(exception.getMessage());
       }
     }
-
-
   }
 
   @Override

@@ -2,6 +2,7 @@ package com.viralinvaders.actors;
 
 public class Actor {
 
+  private boolean setForRemoval;
   protected int height;
   protected int width;
 
