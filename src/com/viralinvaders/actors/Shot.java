@@ -1,4 +1,4 @@
 package com.viralinvaders.actors;
 
-public class Ship extends Actor {
+public class Shot extends Actor {
 }

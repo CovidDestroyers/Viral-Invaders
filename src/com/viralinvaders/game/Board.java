@@ -81,6 +81,10 @@ public class Board  extends JPanel implements Runnable, MouseListener {
     graphics.setColor(Color.RED);
     graphics.fillRect(player.getPosX(), player.getPosY(), 20, 20);
 
+    // For ship
+    graphics.setColor(Color.PINK);
+    graphics.fillRect(player.getPosX() - 60, player.getPosY() - 60 , 30, 30);
+
     // Should probably be in its own method
     if (player.isMoveRight()) {
       int playerX = player.getPosX();
