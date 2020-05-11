@@ -1,5 +1,8 @@
 package com.viralinvaders.game;
 
+import com.viralinvaders.actors.Actor;
+import com.viralinvaders.actors.Player;
+
 import java.awt.event.*;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -21,8 +24,8 @@ import java.io.*;
 
 
 public class Board  extends JPanel implements Runnable, MouseListener {
-  static int BOARD_WIDTH = 640;
-  static int BOARD_HEIGHT= 480;
+  public static final int BOARD_WIDTH = 720;
+  public static final int BOARD_HEIGHT= 500;
 
   private boolean inGame = true;
   private int posX = 0;
@@ -32,6 +35,7 @@ public class Board  extends JPanel implements Runnable, MouseListener {
   private String message = "Click board to start.";
   private BufferedImage image;
   private Thread animator;
+  private Player player;
 
 
 
@@ -42,6 +46,8 @@ public class Board  extends JPanel implements Runnable, MouseListener {
    */
 
   public Board() {
+    player = new Player(BOARD_WIDTH / 2, BOARD_HEIGHT / 2, 5 );
+
     addKeyListener(new TAdapter());
     addMouseListener(this);
     setFocusable(true);
@@ -68,13 +74,31 @@ public class Board  extends JPanel implements Runnable, MouseListener {
 
     super.paint(graphics);
 
-    graphics.setColor(Color.WHITE);
+    graphics.setColor(Color.BLACK);
     graphics.fillRect(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
+
+    // For Player
+    graphics.setColor(Color.RED);
+    graphics.fillRect(player.getPosX(), player.getPosY(), 20, 20);
+
+    if (player.isMoveRight()) {
+      int playerX = player.getPosX();
+      int xPlusSpeed = playerX += player.getActorSpeed();
+
+      player.setPosX(xPlusSpeed);
+    }
+
+    if (player.isMoveLeft()) {
+      int playerX = player.getPosX();
+      int xMinusSpeed = playerX -= player.getActorSpeed();
+
+      player.setPosX(xMinusSpeed);
+    }
 
     Font mediumFont = new Font("Helvetica", Font.BOLD , 14);
     FontMetrics metrics = this.getFontMetrics(mediumFont);
 
-    graphics.setColor(Color.BLACK);
+    graphics.setColor(Color.WHITE);
     graphics.setFont(mediumFont);
     graphics.drawString(getMessage(), xCoord, yCoord);
 
@@ -226,18 +250,25 @@ public class Board  extends JPanel implements Runnable, MouseListener {
     @Override
     public void keyReleased(KeyEvent event) {
       super.keyReleased(event);
-
       int key = event.getKeyCode();
+
+      player.setMoveRight(false);
+      player.setMoveLeft(false);
     }
 
     @Override
     public void keyPressed(KeyEvent event) {
       super.keyPressed(event);
-
       int key = event.getKeyCode();
 
       if (key == 39) {
         System.out.println("KEY CODE: " + key);
+
+        player.setMoveRight(true);
+      }
+
+      if (key == 37) {
+        player.setMoveLeft(true);
       }
     }
   }
