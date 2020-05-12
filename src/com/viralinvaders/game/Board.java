@@ -38,6 +38,8 @@ public class Board  extends JPanel implements Runnable {
   private Thread animator;
   private Player player;
   VirusArmy army;
+  private Shot shot;
+
 
 
 
@@ -49,6 +51,7 @@ public class Board  extends JPanel implements Runnable {
 
   public Board() {
     player = new Player((BOARD_WIDTH / 2), (BOARD_HEIGHT / 2) + 200, 5 );
+    shot = new Shot();
 
     addKeyListener(new TAdapter());
     setFocusable(true);
@@ -233,6 +236,7 @@ public class Board  extends JPanel implements Runnable {
       }
 
       if (key == 32) {
+        shot.moveShot();
         System.out.println("YOU FIRED AT THE VIRUS");
       }
     }

@@ -8,12 +8,6 @@ public class Shot extends Actor implements Runnable {
 
   private int shotSpeed = 10;
 
-  private int shotWidth = 3;
-  private int shotLength = 6;
-
-  private int xPos = 0;
-  private boolean wasHit;
-  private int shotHeight = 0;
   boolean shotState = true; //only allows one shot at a time.
   VirusArmy virusArmy = null;
 
@@ -22,25 +16,28 @@ public class Shot extends Actor implements Runnable {
   }
 
 
-  public Shot(int x, int y, VirusArmy va){
-    xPos = x;
-    shotHeight = y;
+  public Shot(int posX, int height, VirusArmy va){
+    posX = getPosX();
+    height = getHeight();
     virusArmy = va;
     Thread thread = new Thread(this);
     thread.start();
   }
 
-  private boolean moveShot(){
-    if (virusArmy.checkWasHit(xPos, shotHeight)){
+  public Shot(int i, int height) {
+  }
+
+  public boolean moveShot(){
+    if (virusArmy.checkWasHit(posX, height)){
       System.out.println("Hit a virus!");
       shotState = false; //reset state to allow to shoot again.
       return true;
     }
 
-    shotHeight -= 2; // Bullet travel speed
+    height -= 2; // Bullet travel speed
 
     //If bullet goes offscreen then reset it.
-    if(shotHeight < 0){
+    if(height < 0){
       shotState = false;
       return true;
     }
@@ -53,7 +50,7 @@ public class Shot extends Actor implements Runnable {
     } else {
       graphics.setColor(Color.black); //will blend in to the background when at rest
     }
-    graphics.fillOval(xPos, shotHeight, shotWidth, shotLength);
+    graphics.fillOval(posX, height, width, shotSpeed);
   }
 
 
@@ -84,7 +81,7 @@ public class Shot extends Actor implements Runnable {
   }
 
   public boolean getWasHit() {
-    if(wasHit){
+    if(isVisible){
       System.out.println("get Points checkWasHit");
     }
    return false;
