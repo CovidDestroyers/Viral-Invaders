@@ -2,6 +2,7 @@ package com.viralinvaders.game;
 
 import com.viralinvaders.actors.Actor;
 import com.viralinvaders.actors.Player;
+import com.viralinvaders.actors.Vaccine;
 
 import java.awt.event.*;
 import java.awt.Color;
@@ -44,7 +45,8 @@ public class Board  extends JPanel implements Runnable, MouseListener {
    */
 
   public Board() {
-    player = new Player(BOARD_WIDTH / 2, BOARD_HEIGHT / 2, 5 );
+    player = new Player(BOARD_WIDTH / 2, BOARD_HEIGHT-50, 5 );
+    vaccine = new Vaccine(2,5, -10);
 
     addKeyListener(new TAdapter());
     addMouseListener(this);
@@ -75,13 +77,13 @@ public class Board  extends JPanel implements Runnable, MouseListener {
     graphics.setColor(Color.BLACK);
     graphics.fillRect(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
 
-    // For Player
-    graphics.setColor(Color.RED);
-    graphics.fillRect(player.getPosX(), player.getPosY(), 20, 20);
-
     // For ship
     graphics.setColor(Color.PINK);
-    graphics.fillRect(player.getPosX() - 60, player.getPosY() - 60 , 30, 30);
+    graphics.fillRect(player.getPosX(), player.getPosY() , 30, 30);
+
+    // For Bullets
+    graphics.setColor(Color.WHITE);
+    graphics.fillRect(player.getPosX()+13, player.getPosY(), 4, 10);
 
     // Should probably be in its own method
     if (player.isMoveRight()) {
@@ -134,17 +136,25 @@ public class Board  extends JPanel implements Runnable, MouseListener {
 
   }
 
-  @Override
-  public void mouseClicked(MouseEvent mouseEvent) {
+
+
+  public void mouseClicked(MouseEvent mouseEvent, Graphics graphics) {
     int mousePositionX = mouseEvent.getX();
     int mousePositionY = mouseEvent.getY();
 
     System.out.println("Mouse clicked X coordinate: " + mousePositionX);
     System.out.println("Mouse clicked Y coordinate: " + mousePositionY);
+
+  }
+
+  @Override
+  public void mouseClicked(MouseEvent mouseEvent) {
+
   }
 
   @Override
   public void mousePressed(MouseEvent mouseEvent) {
+
 //    int mousePositionX = mouseEvent.getX();
 //    int mousePositionY = mouseEvent.getY();
 //

@@ -1,40 +1,78 @@
 package com.viralinvaders.actors;
+import com.viralinvaders.game.Starter;
 
-import com.viralinvaders.game.Board;
-
+import java.awt.event.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 
 public class Ship extends Actor implements MouseMotionListener, MouseListener {
-  public static final int SHIP_HEIGHT = 25;
-  public static final int SHIP_WIDTH = 15;
 
-  private int x = 0;
-  private int heightPosition = 0;
+  public int shipHeight = 25;
+  public int shipWidth = 15;
 
-  ViralInvaders viralInvaders = null;
+  private int xPos = 0;
+  private int yPos = 0;
 
-  Vaccine vaccine = null;
+  Starter starter = null;
+  Shot shot = null;
 
-  boolean hitState = false;
+  boolean wasHit = false;
 
-  public Vaccine(ViralInvaders vi) {
-    viralInvaders = vi;
-    //setting starting position of ship
-    x = (int) ((ViralInvaders.WIDTH / 2) + (SHIP_WIDTH / 2));
-    heightPosition = ViralInvaders.HEIGHT - SHIP_HEIGHT - 20;
+  public Ship(Starter start){
+    starter = start;
+    xPos = ((Starter.WIDTH/2) + (shipWidth/2));
+    yPos = Starter.HEIGHT-shipHeight-20;
   }
-
 
   @Override
-  public void mouseClicked(MouseEvent e) {
-    VirusArmy army = viralInvaders.getVirusArmy();
-    vaccine = new Vaccine(x + (int) (SHIP_WIDTH / 2), heightPosition, army);
-
+  public void mouseClicked(MouseEvent me) {
+    VirusArmy army = starter.getVirusArmy();
+    shot = new Shot((xPos + shipWidth/2), shipHeight, army);
   }
 
+  @Override
+  public void mouseMoved(MouseEvent me) {
+    int newXPos = me.getX();
+    if (newXPos > (Starter.WIDTH-shipWidth-10)){
+      xPos = Starter.WIDTH-shipWidth-10;
+    } else{
+      xPos = newXPos;
+    }
+  }
+
+  public void drawSHip(Graphics graphics){
+    graphics.setColor(Color.GREEN);
+    graphics.fillOval(xPos, yPos, shipWidth, shipHeight);
+    if ((shot != null) && (shot.getWasHit())){
+      shot.drawShot(graphics);
+    }
+  }
+
+  public boolean checkWasHit( int xShot, int yShot){
+    if((xShot >= xPos) && (xShot <= (xPos+shipWidth))){
+      if ((yShot >= yPos) && (yShot <= (yPos+shipHeight))){
+        wasHit = true;
+
+        System.out.println("You were hit!");
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public void infectedByVirus(){
+    starter.infectedShip();
+  }
+
+
+
+
+
+
+
+
+
+
+  // Unused MouseListeners
   @Override
   public void mousePressed(MouseEvent e) {
 
@@ -47,55 +85,13 @@ public class Ship extends Actor implements MouseMotionListener, MouseListener {
 
   @Override
   public void mouseEntered(MouseEvent e) {
-    viralInvaders.pauseGame(false);
   }
 
   @Override
   public void mouseExited(MouseEvent e) {
-    viralInvaders.pauseGame(true);
   }
 
   @Override
   public void mouseDragged(MouseEvent e) {
-
   }
-
-  @Override
-  public void mouseMoved(MouseEvent e) {
-    int newX = e.getX();
-    if (newX > (ViralInvaders.WIDTH - SHIP_WIDTH - 10)) {
-
-      //Stop the ship moving off the screen
-      x = ViralInvaders.WIDTH - SHIP_WIDTH - 10;
-    } else {
-      //Set the new x position
-      x = newX;
-    }
-  }
-
-  public void drawShip(Graphics g) {
-    g.setColor(Color.GREEN);
-    g.fillRect(shipX, shipY, SHIP_WIDTH, SHIP_HEIGHT);
-    if ((vaccine != null) && (vaccine.getVaccineState())) {
-      vaccine.drawVaccine(g);
-    }
-  }
-
-    public boolean checkVaccine(int xVaccine, int yVaccine){
-
-      if ((xVaccine >= x) && (xVaccine <= (x + SHIP_WIDTH))) {
-        //X is ok, now lets check the Y range
-        if ((yVaccine >= heightPosition) && (yVaccine <= (heightPosition + SHIP_HEIGHT))) {
-          //The ship was hit!
-          hitState = true;
-          return true;
-        }
-      }
-      return false;
-    }
-
-    public void hitByAlien () {
-      viralInvaders.infectedShip();
-    }
-
-  }
+}
