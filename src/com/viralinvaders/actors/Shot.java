@@ -14,6 +14,11 @@ public class Shot implements Runnable {
   boolean shotState = true; //only allows one shot at a time.
   VirusArmy virusArmy = null;
 
+  public Shot() {
+
+  }
+
+
   public Shot(int x, int y, VirusArmy va){
     xPos = x;
     shotHeight = y;
@@ -23,19 +28,19 @@ public class Shot implements Runnable {
   }
 
   private boolean moveShot(){
-    if (virusArmy.checkWasHit(xPos, shotHeight)){
-      System.out.println("Hit a virus!");
-      shotState = false; //reset state to allow to shoot again.
-      return true;
-    }
-
-    shotHeight -= 2; // Bullet travel speed
-
-    //If bullet goes offscreen then reset it.
-    if(shotHeight < 0){
-      shotState = false;
-      return true;
-    }
+    // if (virusArmy.checkWasHit(xPos, shotHeight)){
+    //   System.out.println("Hit a virus!");
+    //   shotState = false; //reset state to allow to shoot again.
+    //   return true;
+    // }
+    //
+    // shotHeight -= 2; // Bullet travel speed
+    //
+    // //If bullet goes offscreen then reset it.
+    // if(shotHeight < 0){
+    //   shotState = false;
+    //   return true;
+    // }
     return false;
   }
 
@@ -56,8 +61,9 @@ public class Shot implements Runnable {
   @Override
   public void run() {
     while(true){
-      try{Thread.sleep(shotSpeed);
-    } catch (InterruptedException e){
+      try{
+        Thread.sleep(shotSpeed);
+      } catch (InterruptedException e){
         System.out.println("InterruptedException in Shot.java");
       }
 

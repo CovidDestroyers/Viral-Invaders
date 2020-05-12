@@ -16,20 +16,20 @@ public class VirusArmy {
 
 
   public void createVirusArmy() {
-    int posX = 15;
+    int posX = 55;
     int posY = 30;
-    int newRowCount = 11;
+    int newRowCount = 9;
 
-    for (int i = 0; i < 96; i++) {
+    for (int i = 0; i < 80; i++) {
       virus = new Virus(posX, posY, 10);
       army.add(virus);
 
       posX += 40;
       if (i == newRowCount) {
-        posX = 15;
+        posX = 55;
         posY += 40;
 
-        newRowCount += 12;
+        newRowCount += 10;
       }
     }
   }
@@ -40,6 +40,10 @@ public class VirusArmy {
       graphics.setColor(color);
       graphics.fillRect(virus.getPosX(), virus.getPosY(), 30, 30);
     }
+  }
+
+
+  public void moveArmy() {
 
   }
 

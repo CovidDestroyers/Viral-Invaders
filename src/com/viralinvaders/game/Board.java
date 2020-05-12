@@ -75,16 +75,16 @@ public class Board  extends JPanel implements Runnable, MouseListener {
 
     super.paint(graphics);
 
-    graphics.setColor(Color.BLACK);
-    graphics.fillRect(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
+    // graphics.setColor(Color.YELLOW);
+    // graphics.fillRect(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
 
-    // For ship
-    graphics.setColor(Color.PINK);
-    graphics.fillRect(player.getPosX(), player.getPosY() , 30, 30);
+    // For ship/Player
+    graphics.setColor(Color.RED);
+    graphics.fillRect(player.getPosX(), player.getPosY() , 20, 20);
 
     // For Bullets
     graphics.setColor(Color.WHITE);
-    graphics.fillRect(player.getPosX()+13, player.getPosY(), 4, 10);
+    graphics.fillRect(player.getPosX() + 9, player.getPosY(), 4, 10);
 
     // Virus Army
     VirusArmy army = new VirusArmy();
@@ -274,12 +274,15 @@ public class Board  extends JPanel implements Runnable, MouseListener {
       System.out.println(event.getKeyCode() + " " + event.getKeyChar());
 
       if (key == 39) {
-        System.out.println("KEY CODE: " + key);
-
+        // System.out.println("KEY CODE: " + key);
         player.setMoveRight(true);
       }
       if (key == 37) {
         player.setMoveLeft(true);
+      }
+
+      if (key == 32) {
+        System.out.println("YOU FIRED AT THE VIRUS");
       }
     }
   }
