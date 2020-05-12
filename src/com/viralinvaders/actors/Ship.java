@@ -38,7 +38,8 @@ public class Ship extends Actor implements MouseMotionListener, MouseListener {
       xPos = newXPos;
     }
   }
-
+  
+  
   public void drawShip(Graphics graphics){
     graphics.setColor(Color.GREEN);
     graphics.fillOval(xPos, yPos, shipWidth, shipHeight);
@@ -93,5 +94,7 @@ public class Ship extends Actor implements MouseMotionListener, MouseListener {
 
   @Override
   public void mouseDragged(MouseEvent e) {
+
   }
+  
 }

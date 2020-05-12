@@ -2,7 +2,7 @@ package com.viralinvaders.game;
 
 import com.viralinvaders.actors.Actor;
 import com.viralinvaders.actors.Player;
-import com.viralinvaders.actors.Vaccine;
+import com.viralinvaders.actors.VirusArmy;
 
 import java.awt.event.*;
 import java.awt.Color;
@@ -11,11 +11,13 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Toolkit;
-import javax.swing.*;
+import javax.swing.Timer;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 import javax.imageio.*;
 import java.awt.image.*;
 import java.io.*;
@@ -23,7 +25,7 @@ import java.io.*;
 
 
 public class Board  extends JPanel implements Runnable, MouseListener {
-  public static final int BOARD_WIDTH = 720;
+  public static final int BOARD_WIDTH = 500;
   public static final int BOARD_HEIGHT= 500;
 
   private boolean inGame = true;
@@ -45,8 +47,7 @@ public class Board  extends JPanel implements Runnable, MouseListener {
    */
 
   public Board() {
-    player = new Player(BOARD_WIDTH / 2, BOARD_HEIGHT-50, 5 );
-    vaccine = new Vaccine(2,5, -10);
+    player = new Player((BOARD_WIDTH / 2), (BOARD_HEIGHT / 2) + 200, 5 );
 
     addKeyListener(new TAdapter());
     addMouseListener(this);
@@ -85,6 +86,13 @@ public class Board  extends JPanel implements Runnable, MouseListener {
     graphics.setColor(Color.WHITE);
     graphics.fillRect(player.getPosX()+13, player.getPosY(), 4, 10);
 
+    // Virus Army
+    VirusArmy army = new VirusArmy();
+
+    // System.out.println(army.createVirusArmy());
+    army.addVirusToBoard(graphics);
+
+
     // Should probably be in its own method
     if (player.isMoveRight()) {
       int playerX = player.getPosX();
@@ -107,6 +115,7 @@ public class Board  extends JPanel implements Runnable, MouseListener {
     graphics.setFont(mediumFont);
     graphics.drawString(getMessage(), xCoord, yCoord);
 
+    // Keeps all the graphics synced
     Toolkit.getDefaultToolkit().sync();
     graphics.dispose();
 
@@ -116,10 +125,6 @@ public class Board  extends JPanel implements Runnable, MouseListener {
   @Override
   public void run() {
     long time = System.currentTimeMillis();
-    long beforeTime = System.currentTimeMillis();
-    long timeDiff;
-    long sleep;
-
     int animationDelay = 50;
 
     while (true) {
@@ -132,8 +137,6 @@ public class Board  extends JPanel implements Runnable, MouseListener {
         System.out.println(exception.getMessage());
       }
     }
-
-
   }
 
 
@@ -273,7 +276,6 @@ public class Board  extends JPanel implements Runnable, MouseListener {
 
         player.setMoveRight(true);
       }
-
       if (key == 37) {
         player.setMoveLeft(true);
       }
