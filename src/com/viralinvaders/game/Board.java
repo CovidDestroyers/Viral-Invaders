@@ -19,7 +19,7 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.imageio.*;
-import java.awt.image.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 
 
@@ -90,7 +90,7 @@ public class Board  extends JPanel implements Runnable, MouseListener {
     VirusArmy army = new VirusArmy();
 
     // System.out.println(army.createVirusArmy());
-    army.addVirusToBoard(graphics);
+    army.addVirusToBoard(graphics, Color.GREEN);
 
 
     // Should probably be in its own method
@@ -262,6 +262,8 @@ public class Board  extends JPanel implements Runnable, MouseListener {
     public void keyPressed(KeyEvent event) {
       super.keyPressed(event);
       int key = event.getKeyCode();
+
+      System.out.println(event.getKeyCode() + " " + event.getKeyChar());
 
       if (key == 39) {
         System.out.println("KEY CODE: " + key);

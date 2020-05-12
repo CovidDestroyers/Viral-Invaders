@@ -1,6 +1,7 @@
 package com.viralinvaders.actors;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class VirusArmy {
   }
 
 
-  public ArrayList<Virus> createVirusArmy() {
+  public void createVirusArmy() {
     int posX = 15;
     int posY = 30;
     int newRowCount = 11;
@@ -31,13 +32,12 @@ public class VirusArmy {
         newRowCount += 12;
       }
     }
-    return  army;
   }
 
 
-  public void addVirusToBoard(Graphics graphics) {
+  public void addVirusToBoard(Graphics graphics, Color color) {
     for (Virus virus : army) {
-      graphics.setColor(Color.GREEN);
+      graphics.setColor(color);
       graphics.fillRect(virus.getPosX(), virus.getPosY(), 30, 30);
     }
 

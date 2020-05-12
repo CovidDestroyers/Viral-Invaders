@@ -10,6 +10,8 @@ public class Actor {
   protected int posY;
   protected int actorSpeed;
 
+  protected boolean isVisible;
+
 
   /*
    * =============================================
