@@ -2,9 +2,11 @@ package com.viralinvaders.game;
 
 import com.viralinvaders.actors.Actor;
 import com.viralinvaders.actors.Player;
+import com.viralinvaders.actors.Shot;
 import com.viralinvaders.actors.VirusArmy;
 
-import java.awt.event.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -24,7 +26,7 @@ import java.io.*;
 
 
 
-public class Board  extends JPanel implements Runnable, MouseListener {
+public class Board  extends JPanel implements Runnable {
   public static final int BOARD_WIDTH = 500;
   public static final int BOARD_HEIGHT= 500;
 
@@ -50,7 +52,6 @@ public class Board  extends JPanel implements Runnable, MouseListener {
     player = new Player((BOARD_WIDTH / 2), (BOARD_HEIGHT / 2) + 200, 5 );
 
     addKeyListener(new TAdapter());
-    addMouseListener(this);
     setFocusable(true);
     setDimension(new Dimension(BOARD_WIDTH, BOARD_HEIGHT));
     setBackground(Color.BLACK);
@@ -83,14 +84,18 @@ public class Board  extends JPanel implements Runnable, MouseListener {
     graphics.fillRect(player.getPosX(), player.getPosY() , 20, 20);
 
     // For Bullets
-    graphics.setColor(Color.WHITE);
-    graphics.fillRect(player.getPosX() + 9, player.getPosY(), 4, 10);
+    // graphics.setColor(Color.WHITE);
+    // graphics.fillRect(player.getPosX() + 9, player.getPosY(), 4, 10);
 
     // Virus Army
     VirusArmy army = new VirusArmy();
 
     // System.out.println(army.createVirusArmy());
     army.addVirusToBoard(graphics, Color.GREEN);
+
+    Shot shot = new Shot();
+
+    shot.addShotToBoard(graphics, player);
 
 
     // Should probably be in its own method
@@ -107,13 +112,6 @@ public class Board  extends JPanel implements Runnable, MouseListener {
 
       player.setPosX(xMinusSpeed);
     }
-
-    Font mediumFont = new Font("Helvetica", Font.BOLD , 14);
-    FontMetrics metrics = this.getFontMetrics(mediumFont);
-
-    graphics.setColor(Color.WHITE);
-    graphics.setFont(mediumFont);
-    graphics.drawString(getMessage(), xCoord, yCoord);
 
     // Keeps all the graphics synced
     Toolkit.getDefaultToolkit().sync();
@@ -138,48 +136,6 @@ public class Board  extends JPanel implements Runnable, MouseListener {
       }
     }
   }
-
-
-
-  public void mouseClicked(MouseEvent mouseEvent, Graphics graphics) {
-    int mousePositionX = mouseEvent.getX();
-    int mousePositionY = mouseEvent.getY();
-
-    System.out.println("Mouse clicked X coordinate: " + mousePositionX);
-    System.out.println("Mouse clicked Y coordinate: " + mousePositionY);
-
-  }
-
-  @Override
-  public void mouseClicked(MouseEvent mouseEvent) {
-
-  }
-
-  @Override
-  public void mousePressed(MouseEvent mouseEvent) {
-
-//    int mousePositionX = mouseEvent.getX();
-//    int mousePositionY = mouseEvent.getY();
-//
-//    System.out.println("Mouse position X coordinate: " + mousePositionX);
-//    System.out.println("Mouse position Y coordinate: " + mousePositionY);
-  }
-
-  @Override
-  public void mouseReleased(MouseEvent mouseEvent) {
-
-  }
-
-  @Override
-  public void mouseEntered(MouseEvent mouseEvent) {
-
-  }
-
-  @Override
-  public void mouseExited(MouseEvent mouseEvent) {
-
-  }
-
 
 
   /*

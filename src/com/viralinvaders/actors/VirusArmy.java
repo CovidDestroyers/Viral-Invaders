@@ -48,5 +48,7 @@ public class VirusArmy {
   }
 
 
-
+  public boolean checkWasHit(int xPos, int shotHeight) {
+    return true;
+  }
 }

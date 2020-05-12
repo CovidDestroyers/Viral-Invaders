@@ -1,8 +1,10 @@
 package com.viralinvaders.actors;
 
+import com.viralinvaders.game.Board;
+
 import java.awt.*;
 
-public class Shot implements Runnable {
+public class Shot extends Actor implements Runnable {
 
   private int shotSpeed = 10;
 
@@ -10,6 +12,7 @@ public class Shot implements Runnable {
   private int shotLength = 6;
 
   private int xPos = 0;
+  private boolean wasHit;
   private int shotHeight = 0;
   boolean shotState = true; //only allows one shot at a time.
   VirusArmy virusArmy = null;
@@ -28,19 +31,19 @@ public class Shot implements Runnable {
   }
 
   private boolean moveShot(){
-    // if (virusArmy.checkWasHit(xPos, shotHeight)){
-    //   System.out.println("Hit a virus!");
-    //   shotState = false; //reset state to allow to shoot again.
-    //   return true;
-    // }
-    //
-    // shotHeight -= 2; // Bullet travel speed
-    //
-    // //If bullet goes offscreen then reset it.
-    // if(shotHeight < 0){
-    //   shotState = false;
-    //   return true;
-    // }
+    if (virusArmy.checkWasHit(xPos, shotHeight)){
+      System.out.println("Hit a virus!");
+      shotState = false; //reset state to allow to shoot again.
+      return true;
+    }
+
+    shotHeight -= 2; // Bullet travel speed
+
+    //If bullet goes offscreen then reset it.
+    if(shotHeight < 0){
+      shotState = false;
+      return true;
+    }
     return false;
   }
 
@@ -52,6 +55,13 @@ public class Shot implements Runnable {
     }
     graphics.fillOval(xPos, shotHeight, shotWidth, shotLength);
   }
+
+
+  public void addShotToBoard(Graphics graphics, Player player) {
+    graphics.setColor(Color.PINK);
+    graphics.fillRect( player.getPosX() + 9 , player.getPosY(), 4, 10);
+  }
+
 
   public boolean getShotState(){
     return shotState;
@@ -71,5 +81,12 @@ public class Shot implements Runnable {
         break;
       }
     }
+  }
+
+  public boolean getWasHit() {
+    if(wasHit){
+      System.out.println("get Points checkWasHit");
+    }
+   return false;
   }
 }

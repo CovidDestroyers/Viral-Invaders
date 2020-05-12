@@ -25,8 +25,8 @@ public class Ship extends Actor implements MouseMotionListener, MouseListener {
 
   @Override
   public void mouseClicked(MouseEvent me) {
-    // VirusArmy army = starter.getVirusArmy();
-    // shot = new Shot((xPos + shipWidth/2), shipHeight, army);
+    VirusArmy army = starter.getVirusArmy();
+    shot = new Shot((xPos + shipWidth/2), shipHeight, army);
   }
 
   @Override
@@ -43,9 +43,9 @@ public class Ship extends Actor implements MouseMotionListener, MouseListener {
   public void drawShip(Graphics graphics){
     graphics.setColor(Color.GREEN);
     graphics.fillOval(xPos, yPos, shipWidth, shipHeight);
-    // if ((shot != null) && (shot.getWasHit())){
-    //   shot.drawShot(graphics);
-    // }
+    if ((shot != null) && (shot.getWasHit())){
+      shot.drawShot(graphics);
+    }
   }
 
   public boolean checkWasHit( int xShot, int yShot){
@@ -59,19 +59,6 @@ public class Ship extends Actor implements MouseMotionListener, MouseListener {
     }
     return false;
   }
-
-  public void infectedByVirus(){
-    // starter.infectedShip();
-  }
-
-
-
-
-
-
-
-
-
 
   // Unused MouseListeners
   @Override
