@@ -15,7 +15,7 @@ public class Virus extends Actor {
     super(posX, posY, actorSpeed);
 
     setMoveLeft(false);
-    setMoveRight(false);
+    setMoveRight(true);
     setVisible(true);
   }
 

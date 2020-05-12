@@ -1,5 +1,7 @@
 package com.viralinvaders.actors;
 
+import java.awt.*;
+
 public class Actor {
 
   private boolean setForRemoval;

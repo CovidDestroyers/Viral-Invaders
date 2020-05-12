@@ -9,8 +9,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import javax.swing.Timer;
@@ -39,6 +37,7 @@ public class Board  extends JPanel implements Runnable {
   private BufferedImage image;
   private Thread animator;
   private Player player;
+  VirusArmy army;
 
 
 
@@ -56,6 +55,8 @@ public class Board  extends JPanel implements Runnable {
     setDimension(new Dimension(BOARD_WIDTH, BOARD_HEIGHT));
     setBackground(Color.BLACK);
     setDoubleBuffered(true);
+
+    army = new VirusArmy();
 
     if (animator == null || !inGame) {
       animator = new Thread(this);
@@ -76,22 +77,16 @@ public class Board  extends JPanel implements Runnable {
 
     super.paint(graphics);
 
-    // graphics.setColor(Color.YELLOW);
-    // graphics.fillRect(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
 
     // For ship/Player
     graphics.setColor(Color.RED);
     graphics.fillRect(player.getPosX(), player.getPosY() , 20, 20);
 
-    // For Bullets
-    // graphics.setColor(Color.WHITE);
-    // graphics.fillRect(player.getPosX() + 9, player.getPosY(), 4, 10);
-
-    // Virus Army
-    VirusArmy army = new VirusArmy();
 
     // System.out.println(army.createVirusArmy());
-    army.addVirusToBoard(graphics, Color.GREEN);
+    army.addArmyToBoard(graphics, Color.GREEN);
+
+    // army.moveArmy();
 
     Shot shot = new Shot();
 

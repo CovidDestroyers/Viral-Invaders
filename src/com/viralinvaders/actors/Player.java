@@ -1,5 +1,7 @@
 package com.viralinvaders.actors;
 
+import java.awt.*;
+
 public class Player extends Actor {
 
   private boolean moveRight;

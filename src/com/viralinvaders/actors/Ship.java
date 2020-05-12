@@ -25,8 +25,8 @@ public class Ship extends Actor implements MouseMotionListener, MouseListener {
 
   @Override
   public void mouseClicked(MouseEvent me) {
-    VirusArmy army = starter.getVirusArmy();
-    shot = new Shot((xPos + shipWidth/2), shipHeight, army);
+    // VirusArmy army = starter.getVirusArmy();
+    // shot = new Shot((xPos + shipWidth/2), shipHeight, army);
   }
 
   @Override
