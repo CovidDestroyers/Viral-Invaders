@@ -236,7 +236,7 @@ public class Board  extends JPanel implements Runnable {
       }
 
       if (key == 32) {
-        shot.moveShot();
+        // shot.moveShot();
         System.out.println("YOU FIRED AT THE VIRUS");
       }
     }

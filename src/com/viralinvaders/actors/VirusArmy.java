@@ -23,7 +23,7 @@ public class VirusArmy {
     int newRowCount = 9;
 
     for (int i = 0; i < 80; i++) {
-      virus = new Virus(posX, posY, 5);
+      virus = new Virus(posX, posY, 3);
       VIRUS_ARMY.add(virus);
 
       posX += 40;
@@ -54,14 +54,11 @@ public class VirusArmy {
       if (virus.isMoveRight()) {
         int z = virusLocationXaxis + virusSpeed;
         virus.setPosX(z);
-        // System.out.println(virus.getPosX());
-        System.out.println(virus.posX);
       }
 
       if (virus.isMoveLeft()) {
         int k = virusLocationXaxis - virusSpeed;
         virus.setPosX(k);
-        System.out.println("Move Left: " + virus.getPosX());
       }
     }
 
@@ -76,7 +73,7 @@ public class VirusArmy {
         }
       }
 
-      if (virusNewX <= 0) {
+      if (virusNewX <= 5) {
         for (Virus virus1 : VIRUS_ARMY) {
           virus1.setMoveLeft(false);
           virus1.setMoveRight(true);
