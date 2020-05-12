@@ -1,4 +1,4 @@
-package com.viralinvaders.actors;
-
-public class VirusShot extends Shot {
-}
+//package com.viralinvaders.actors;
+//
+//public class VirusShot extends Shot {
+//}

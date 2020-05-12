@@ -10,6 +10,7 @@ public class Shot implements Runnable {
   private int shotLength = 6;
 
   private int xPos = 0;
+  private boolean wasHit;
   private int shotHeight = 0;
   boolean shotState = true; //only allows one shot at a time.
   VirusArmy virusArmy = null;
@@ -65,5 +66,12 @@ public class Shot implements Runnable {
         break;
       }
     }
+  }
+
+  public boolean getWasHit() {
+    if(wasHit){
+      System.out.println("get Points checkWasHit");
+    }
+   return false;
   }
 }

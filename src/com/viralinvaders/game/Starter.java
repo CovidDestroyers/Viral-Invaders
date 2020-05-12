@@ -1,8 +1,13 @@
 package com.viralinvaders.game;
 
+import com.viralinvaders.actors.VirusArmy;
+
 import javax.swing.JFrame;
 
 public class Starter extends JFrame {
+
+  VirusArmy army = null;
+
 
   public Starter() {
     add(new Board());
@@ -17,6 +22,10 @@ public class Starter extends JFrame {
 
   public static void main(String[] args) {
     new Starter();
+  }
+
+  public VirusArmy getVirusArmy() {
+    return army;
   }
 
 }
