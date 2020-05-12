@@ -1,4 +1,5 @@
 package com.viralinvaders.actors;
+import com.viralinvaders.game.Board;
 import com.viralinvaders.game.Starter;
 
 import java.awt.event.*;
@@ -6,51 +7,38 @@ import java.awt.*;
 
 public class Ship extends Actor implements MouseMotionListener, MouseListener {
 
-  public int shipHeight = 25;
-  public int shipWidth = 15;
-
-  private int xPos = 0;
-  private int yPos = 0;
-
-  Starter starter = null;
+  Board board= null;
   Shot shot = null;
 
   boolean wasHit = false;
 
-  public Ship(Starter start){
-    starter = start;
-    xPos = ((Starter.WIDTH/2) + (shipWidth/2));
-    yPos = Starter.HEIGHT-shipHeight-20;
-  }
-
   @Override
   public void mouseClicked(MouseEvent me) {
-    VirusArmy army = starter.getVirusArmy();
-    shot = new Shot((xPos + shipWidth/2), shipHeight, army);
+    shot = new Shot((posX + width/2), height);
   }
 
   @Override
   public void mouseMoved(MouseEvent me) {
     int newXPos = me.getX();
-    if (newXPos > (Starter.WIDTH-shipWidth-10)){
-      xPos = Starter.WIDTH-shipWidth-10;
+    if (newXPos > (width-10)){
+      posX = width-10;
     } else{
-      xPos = newXPos;
+      posX = newXPos;
     }
   }
 
 
   public void drawShip(Graphics graphics){
     graphics.setColor(Color.GREEN);
-    graphics.fillOval(xPos, yPos, shipWidth, shipHeight);
+    graphics.fillOval(posX, posY, width, height);
     if ((shot != null) && (shot.getWasHit())){
       shot.drawShot(graphics);
     }
   }
 
   public boolean checkWasHit( int xShot, int yShot){
-    if((xShot >= xPos) && (xShot <= (xPos+shipWidth))){
-      if ((yShot >= yPos) && (yShot <= (yPos+shipHeight))){
+    if((xShot >= posX) && (xShot <= (posX+width))){
+      if ((yShot >= posY) && (yShot <= (posY+height))){
         wasHit = true;
 
         System.out.println("You were hit!");
