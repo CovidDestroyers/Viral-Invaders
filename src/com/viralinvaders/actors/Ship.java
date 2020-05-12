@@ -38,8 +38,8 @@ public class Ship extends Actor implements MouseMotionListener, MouseListener {
       xPos = newXPos;
     }
   }
-  
-  
+
+
   public void drawShip(Graphics graphics){
     graphics.setColor(Color.GREEN);
     graphics.fillOval(xPos, yPos, shipWidth, shipHeight);
@@ -59,11 +59,6 @@ public class Ship extends Actor implements MouseMotionListener, MouseListener {
     }
     return false;
   }
-
-  public void infectedByVirus(){
-    starter.infectedShip();
-  }
-
 
 
 
@@ -96,5 +91,5 @@ public class Ship extends Actor implements MouseMotionListener, MouseListener {
   public void mouseDragged(MouseEvent e) {
 
   }
-  
+
 }
