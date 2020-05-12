@@ -37,7 +37,7 @@ public class Board  extends JPanel implements Runnable {
   private BufferedImage image;
   private Thread animator;
   private Player player;
-  VirusArmy army;
+  private VirusArmy army;
   private Shot shot;
 
 
@@ -89,7 +89,7 @@ public class Board  extends JPanel implements Runnable {
     // System.out.println(army.createVirusArmy());
     army.addArmyToBoard(graphics, Color.GREEN);
 
-    // army.moveArmy();
+    army.moveArmy();
 
     Shot shot = new Shot();
 
@@ -112,7 +112,7 @@ public class Board  extends JPanel implements Runnable {
     }
 
     // Keeps all the graphics synced
-    Toolkit.getDefaultToolkit().sync();
+    // Toolkit.getDefaultToolkit().sync();
     graphics.dispose();
 
   }

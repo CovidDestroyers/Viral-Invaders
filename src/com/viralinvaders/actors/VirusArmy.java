@@ -23,7 +23,7 @@ public class VirusArmy {
     int newRowCount = 9;
 
     for (int i = 0; i < 80; i++) {
-      virus = new Virus(posX, posY, 10);
+      virus = new Virus(posX, posY, 5);
       VIRUS_ARMY.add(virus);
 
       posX += 40;
@@ -42,7 +42,7 @@ public class VirusArmy {
       graphics.setColor(color);
       graphics.fillRect(virus.getPosX(), virus.getPosY(), 30, 30);
     }
-    moveArmy();
+    // moveArmy();
   }
 
 
@@ -52,32 +52,38 @@ public class VirusArmy {
       int virusSpeed = virus.getActorSpeed();
 
       if (virus.isMoveRight()) {
-        virus.setPosX(virusLocationXaxis += virusSpeed);
+        int z = virusLocationXaxis + virusSpeed;
+        virus.setPosX(z);
         // System.out.println(virus.getPosX());
         System.out.println(virus.posX);
       }
 
       if (virus.isMoveLeft()) {
-        virus.setPosX(virusLocationXaxis -= virusSpeed);
-        System.out.println("Position Y: " + virus.getPosX());
+        int k = virusLocationXaxis - virusSpeed;
+        virus.setPosX(k);
+        System.out.println("Move Left: " + virus.getPosX());
       }
+    }
 
-      // Check bounds and if at 500px, go the other direction
-      if ( virusLocationXaxis >= Board.BOARD_WIDTH) {
+    // Check bounds and if at 500px, go the other direction
+    for (Virus virus : VIRUS_ARMY) {
+      int virusNewX = virus.getPosX();
+
+      if (virusNewX >= 470) {
         for (Virus virus1 : VIRUS_ARMY) {
           virus1.setMoveLeft(true);
           virus1.setMoveRight(false);
         }
       }
 
-      if (virusLocationXaxis <= 0) {
+      if (virusNewX <= 0) {
         for (Virus virus1 : VIRUS_ARMY) {
           virus1.setMoveLeft(false);
           virus1.setMoveRight(true);
         }
       }
     }
-
+    // end of bounds check
 
   }
 
