@@ -14,7 +14,7 @@ public class Ship extends Actor implements MouseMotionListener, MouseListener {
 
   @Override
   public void mouseClicked(MouseEvent me) {
-    shot = new Shot((posX + width/2), height);
+    shot = new Shot(posX, posY, 5);
   }
 
   @Override
@@ -31,7 +31,7 @@ public class Ship extends Actor implements MouseMotionListener, MouseListener {
   public void drawShip(Graphics graphics){
     graphics.setColor(Color.GREEN);
     graphics.fillOval(posX, posY, width, height);
-    if ((shot != null) && (shot.getWasHit())){
+    if ((shot != null)){
       shot.drawShot(graphics);
     }
   }

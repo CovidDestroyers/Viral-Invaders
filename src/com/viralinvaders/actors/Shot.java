@@ -1,89 +1,129 @@
 package com.viralinvaders.actors;
 
-import com.viralinvaders.game.Board;
-
 import java.awt.*;
+import java.util.ArrayList;
 
-public class Shot extends Actor implements Runnable {
+public class Shot extends Actor{
 
-  private int shotSpeed = 10;
+  private boolean moveUp;
 
-  boolean shotState = true; //only allows one shot at a time.
-  VirusArmy virusArmy = null;
+  private Shot shot;
+  private Ship ship;
+
+  public static final ArrayList<Shot> SHOT_ARRAY_LIST = new ArrayList<>();
+
+
+
+  /*
+   * =============================================
+   * ============= Constructors ==================
+   * =============================================
+   */
+
+
+  public Shot(int posX, int posY, int actorSpeed){
+    super(posX, posY, actorSpeed);
+    createShotArray();
+  }
 
   public Shot() {
 
   }
 
 
-  public Shot(int posX, int height, VirusArmy va){
-    posX = getPosX();
-    height = getHeight();
-    virusArmy = va;
-    Thread thread = new Thread(this);
-    thread.start();
-  }
-
-  public Shot(int i, int height) {
-  }
-
-  public boolean moveShot(){
-    if (virusArmy.checkWasHit(posX, height)){
-      System.out.println("Hit a virus!");
-      shotState = false; //reset state to allow to shoot again.
-      return true;
+  public void addShotToBoard(Graphics graphics, Color color) {
+    for (Shot shot : SHOT_ARRAY_LIST) {
+      graphics.setColor(color);
+      graphics.fillRect(shot.getPosX(), shot.getPosY(), 3, 7);
     }
+  }
 
-    height -= 2; // Bullet travel speed
 
-    //If bullet goes offscreen then reset it.
-    if(height < 0){
-      shotState = false;
-      return true;
+
+  /*
+   * =============================================
+   * =========== Business Methods ================
+   * =============================================
+   */
+
+
+
+  public void createShotArray() {
+    int posX = ship.getPosX();
+    int posY = ship.getPosY();
+
+    for (int i = 0; i < 1000; i++) {
+      shot = new Shot(ship.getPosX(), ship.getPosY(), 5);
+      SHOT_ARRAY_LIST.add(shot);
+      posY += 40;
     }
-    return false;
-  }
-
-  public void drawShot(Graphics graphics){
-    if(shotState){
-      graphics.setColor(Color.ORANGE);
-    } else {
-      graphics.setColor(Color.black); //will blend in to the background when at rest
-    }
-    graphics.fillOval(posX, height, width, shotSpeed);
   }
 
 
-  public void addShotToBoard(Graphics graphics, Player player) {
-    graphics.setColor(Color.PINK);
-    graphics.fillRect( player.getPosX() + 9 , player.getPosY(), 4, 10);
-  }
 
 
-  public boolean getShotState(){
-    return shotState;
-  }
+  public void moveShot() {
+    for (Shot shot : SHOT_ARRAY_LIST) {
+      int shotYaxis = shot.getPosY();
+      int shotSpeed = shot.getActorSpeed();
 
-  //Below is the thread that moves the shot.
-  @Override
-  public void run() {
-    while(true){
-      try{
-        Thread.sleep(shotSpeed);
-      } catch (InterruptedException e){
-        System.out.println("InterruptedException in Shot.java");
+      if (shot.isMoveUp()) {
+        int z = shotYaxis + shotSpeed;
+        shot.setPosY(z);
       }
+    }
+    for (Shot shot : SHOT_ARRAY_LIST) {
+      int shotNewY = shot.getPosY();
 
-      if ((moveShot())){
-        break;
+      if (shotNewY <= 0) {
+        for (Shot shot1 : SHOT_ARRAY_LIST) {
+          shot1.setMoveUp(true);
+        }
       }
     }
   }
 
-  public boolean getWasHit() {
-    if(isVisible){
-      System.out.println("get Points checkWasHit");
-    }
-   return false;
+
+
+
+  /*
+   * =============================================
+   * =========== Getter Methods ================
+   * =============================================
+   */
+
+
+
+  public boolean isMoveUp() {
+    return moveUp;
+  }
+
+
+
+
+
+  /*
+   * =============================================
+   * =========== Setter Methods ================
+   * =============================================
+   */
+
+
+
+
+  public void setMoveUp(boolean moveUp) {
+    this.moveUp = moveUp;
+  }
+
+
+
+  public void addShotToBoard(Graphics g, Shot shot) {
+    g.setColor(Color.PINK);
+    g.fillRect( shot.getPosX() + 9 , shot.getPosY(), 4, 10);
+  }
+
+
+  public void drawShot(Graphics graphics) {
+
   }
 }
