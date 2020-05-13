@@ -87,6 +87,7 @@ public class Board extends JPanel implements Runnable {
     if (shot.isMoveUp()) {
       int shootMore = 0;
 
+
       while (shootMore < 5) {
 
         shootMore += 1;
@@ -96,6 +97,9 @@ public class Board extends JPanel implements Runnable {
 
         graphics.setColor(Color.white);
         graphics.fillRect(shot.getPosX() + 8, shot.getPosY(), 4, 10);
+
+//        graphics.setColor(Color.GREEN);
+//        graphics.fillOval(player1.getPosX(), player1.getPosY(), 5, 20);
       }
     }
 
@@ -106,7 +110,6 @@ public class Board extends JPanel implements Runnable {
      */
     virusArmy.addArmyToBoard(graphics, Color.GREEN);
     virusArmy.moveArmy();
-
 
 
     // Should probably be in its own method
@@ -198,6 +201,8 @@ public class Board extends JPanel implements Runnable {
 
       player.setMoveRight(false);
       player.setMoveLeft(false);
+//      shot.setMoveUp(false);
+      shot.setMoveUp(true);
     }
 
     @Override
@@ -212,10 +217,15 @@ public class Board extends JPanel implements Runnable {
         player.setMoveRight(true);
       }
       if (key == 37) {
-          player.setMoveLeft(true);
+        player.setMoveLeft(true);
       }
 
       if (key == 32) {
+//        for (Shot shot : SHOT_ARRAY_LIST){
+//          shot.setMoveUp(true);
+//          shot = new Shot();
+//          shot.moveShot();
+//        }
         shot = new Shot(player.getPosX(), player.getPosY(), 3);
         shot.setMoveUp(true);
       }
