@@ -67,9 +67,7 @@ public class Board extends JPanel implements Runnable {
 
 
     // Player/Ship creation
-    graphics.setColor(Color.RED);
-    graphics.fillRect(player.getPosX(), player.getPosY(), 20, 20);
-
+    player.addPlayerToBoard(graphics);
     player.movePlayer(player);
 
     //Shots creation
@@ -99,23 +97,13 @@ public class Board extends JPanel implements Runnable {
       }
     }
 
-    /*
-     * =============================================
-     * ============== Virus Army ===================
-     * =============================================
-     */
+    // Virus Army
     virusArmy.addArmyToBoard(graphics, Color.GREEN);
     virusArmy.moveArmy();
-
-
-
-    // Should probably be in its own method
-
 
     // Keeps all the graphics synced
     Toolkit.getDefaultToolkit().sync();
     graphics.dispose();
-
   }
 
 
@@ -128,8 +116,9 @@ public class Board extends JPanel implements Runnable {
       repaint();
       try {
         time += animationDelay;
-        Thread.sleep(Math.max(0, time - System.currentTimeMillis()));
-      } catch (InterruptedException exception) {
+        Thread.sleep(time - System.currentTimeMillis());
+      }
+      catch (InterruptedException exception) {
         System.out.println(exception.getMessage());
       }
     }

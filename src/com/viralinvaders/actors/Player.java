@@ -1,6 +1,7 @@
 package com.viralinvaders.actors;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Color;
 
 public class Player extends Actor {
 
@@ -9,21 +10,38 @@ public class Player extends Actor {
 
   /*
    * =============================================
-   * ============= Constructors ==================
+   * ============= Constructor ==================
    * =============================================
    */
   public Player(int posX, int posY, int actorSpeed) {
     super(posX, posY, actorSpeed);
-
     setMoveLeft(false);
     setMoveRight(false);
   }
+
 
   /*
    * =============================================
    * =========== Business Methods ================
    * =============================================
    */
+
+  public void addPlayerToBoard(Graphics graphics) {
+    graphics.setColor(Color.RED);
+    graphics.fillRect(getPosX(), getPosY(), 20, 20);
+  }
+
+
+  public void movePlayer(Player player) {
+    if (player.isMoveRight()) {
+      movePlayerRight(player);
+    }
+
+    if (player.isMoveLeft()) {
+      movePlayerLeft(player);
+    }
+  }
+
 
   // TODO: Look this over again for ideas on collision detection
   // public boolean checkWasHit(int xShot, int yShot) {
@@ -37,32 +55,6 @@ public class Player extends Actor {
   //   }
   //   return false;
   // }
-
-  public void movePlayer(Player player) {
-    if (player.isMoveRight()) {
-      movePlayerRight(player);
-    }
-
-    if (player.isMoveLeft()) {
-      movePlayerLeft(player);
-    }
-  }
-
-
-  private void movePlayerRight(Player player) {
-    int playerX = player.getPosX();
-    int xPlusSpeed = playerX + player.getActorSpeed();
-
-    player.setPosX(xPlusSpeed);
-  }
-
-  private void movePlayerLeft(Player player) {
-    int playerX = player.getPosX();
-    int xMinusSpeed = playerX - player.getActorSpeed();
-
-    player.setPosX(xMinusSpeed);
-  }
-
 
   /*
    * =============================================
@@ -89,6 +81,25 @@ public class Player extends Actor {
 
   public boolean isMoveRight() {
     return moveRight;
+  }
+
+  /*
+   * =============================================
+   * =========== Private Methods ================
+   * =============================================
+   */
+  private void movePlayerRight(Player player) {
+    int playerX = player.getPosX();
+    int xPlusSpeed = playerX + player.getActorSpeed();
+
+    player.setPosX(xPlusSpeed);
+  }
+
+  private void movePlayerLeft(Player player) {
+    int playerX = player.getPosX();
+    int xMinusSpeed = playerX - player.getActorSpeed();
+
+    player.setPosX(xMinusSpeed);
   }
 
 }

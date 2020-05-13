@@ -1,5 +1,7 @@
 package com.viralinvaders.actors;
 
+import java.awt.*;
+
 public class Virus extends Actor {
 
   private boolean moveRight;
@@ -24,6 +26,11 @@ public class Virus extends Actor {
    * =========== Business Methods ================
    * =============================================
    */
+  public void addVirusToBoard(Graphics graphics) {
+    graphics.setColor(Color.GREEN);
+    graphics.fillRect(getPosX(), getPosY(), 30, 30);
+  }
+
 
 
   /*
