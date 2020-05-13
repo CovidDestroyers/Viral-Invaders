@@ -30,13 +30,13 @@ public class VirusArmy {
 
     for (int i = 0; i < 80; i++) {
       Virus virus = new Virus(posX, posY, 3);
-      virusArmy.add(virus);
 
+      virusArmy.add(virus);
       posX += 40;
+
       if (i == newRowCount) {
         posX = 55;
         posY += 40;
-
         newRowCount += 10;
       }
     }
@@ -45,8 +45,7 @@ public class VirusArmy {
 
   public void addArmyToBoard(Graphics graphics, Color color) {
     for (Virus virus : virusArmy) {
-      graphics.setColor(color);
-      graphics.fillRect(virus.getPosX(), virus.getPosY(), 30, 30);
+      virus.addVirusToBoard(graphics);
     }
   }
 

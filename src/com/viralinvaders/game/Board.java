@@ -63,9 +63,11 @@ public class Board extends JPanel implements Runnable {
 
 
     // Player/Ship creation
+
     graphics.setColor(Color.RED);
     graphics.fillRect(player.getPosX(), player.getPosY(), 20, 20);
     player.movePlayer(player);
+
 
 
     //Virus Army Creation
@@ -99,13 +101,34 @@ public class Board extends JPanel implements Runnable {
     // go through shot array
     // set color
     // fill rect with shot posX and shotPosY, 3, 7
+
     
 
-    // Should probably be in its own method
+
+
+
+    if (shot.isMoveUp()) {
+      int shootMore = 0;
+
+      while (shootMore < 5) {
+
+        shootMore += 1;
+        int shotY = shot.getPosY();
+        int shotYminusSpeed = shotY - shot.getActorSpeed();
+        shot.setPosY(shotYminusSpeed);
+
+        graphics.setColor(Color.white);
+        graphics.fillRect(shot.getPosX() + 8, shot.getPosY(), 4, 10);
+      }
+    }
+
+    // Virus Army
+    virusArmy.addArmyToBoard(graphics, Color.GREEN);
+    virusArmy.moveArmy();
+
     // Keeps all the graphics synced
     Toolkit.getDefaultToolkit().sync();
     graphics.dispose();
-
   }
 
 
@@ -118,8 +141,9 @@ public class Board extends JPanel implements Runnable {
       repaint();
       try {
         time += animationDelay;
-        Thread.sleep(Math.max(0, time - System.currentTimeMillis()));
-      } catch (InterruptedException exception) {
+        Thread.sleep(time - System.currentTimeMillis());
+      }
+      catch (InterruptedException exception) {
         System.out.println(exception.getMessage());
       }
     }
