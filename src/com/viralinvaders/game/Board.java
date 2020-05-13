@@ -70,6 +70,7 @@ public class Board extends JPanel implements Runnable {
     graphics.setColor(Color.RED);
     graphics.fillRect(player.getPosX(), player.getPosY(), 20, 20);
 
+    player.movePlayer(player);
 
     //Shots creation
     // Check shot array if isMoveUp
@@ -109,19 +110,6 @@ public class Board extends JPanel implements Runnable {
 
 
     // Should probably be in its own method
-    if (player.isMoveRight()) {
-      int playerX = player.getPosX();
-      int xPlusSpeed = playerX + player.getActorSpeed();
-
-      player.setPosX(xPlusSpeed);
-    }
-
-    if (player.isMoveLeft()) {
-      int playerX = player.getPosX();
-      int xMinusSpeed = playerX - player.getActorSpeed();
-
-      player.setPosX(xMinusSpeed);
-    }
 
 
     // Keeps all the graphics synced
