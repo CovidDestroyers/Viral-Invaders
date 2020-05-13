@@ -1,12 +1,8 @@
 package com.viralinvaders.game;
 
-import com.viralinvaders.actors.VirusArmy;
-
-import javax.swing.JFrame;
+import javax.swing.*;
 
 public class Starter extends JFrame {
-
-  VirusArmy army = null;
 
 
   public Starter() {

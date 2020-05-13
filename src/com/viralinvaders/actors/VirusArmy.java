@@ -1,11 +1,7 @@
 package com.viralinvaders.actors;
 
-import com.viralinvaders.game.Board;
-
-import java.awt.Graphics;
-import java.awt.Color;
+import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class VirusArmy {
   private Virus virus;
