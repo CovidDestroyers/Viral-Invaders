@@ -88,17 +88,17 @@ public class VirusArmy {
 
   private void checkRightSideBound(Virus virus) {
     if (virus.getPosX() >= 470) {
-      setLeftRightForArmy(true, false);
+      setLeftRightTrueFalseForArmy(true, false);
     }
   }
 
   private void checkLeftSideBound(Virus virus) {
     if (virus.getPosX() <= 5) {
-      setLeftRightForArmy(false, true);
+      setLeftRightTrueFalseForArmy(false, true);
     }
   }
 
-  private void setLeftRightForArmy(boolean moveLeft, boolean moveRight) {
+  private void setLeftRightTrueFalseForArmy(boolean moveLeft, boolean moveRight) {
     for (Virus virus1 : virusArmy) {
       virus1.setMoveLeft(moveLeft);
       virus1.setMoveRight(moveRight);
