@@ -32,13 +32,13 @@ public class Player extends Actor {
   }
 
 
-  public void movePlayer(Player player) {
-    if (player.isMoveRight()) {
-      movePlayerRight(player);
+  public void movePlayer() {
+    if (this.isMoveRight()) {
+      movePlayerRight();
     }
 
-    if (player.isMoveLeft()) {
-      movePlayerLeft(player);
+    if (this.isMoveLeft()) {
+      movePlayerLeft();
     }
   }
 
@@ -88,18 +88,18 @@ public class Player extends Actor {
    * =========== Private Methods ================
    * =============================================
    */
-  private void movePlayerRight(Player player) {
-    int playerX = player.getPosX();
-    int xPlusSpeed = playerX + player.getActorSpeed();
+  private void movePlayerRight() {
+    int playerX = this.getPosX();
+    int xPlusSpeed = playerX + this.getActorSpeed();
 
-    player.setPosX(xPlusSpeed);
+    this.setPosX(xPlusSpeed);
   }
 
-  private void movePlayerLeft(Player player) {
-    int playerX = player.getPosX();
-    int xMinusSpeed = playerX - player.getActorSpeed();
+  private void movePlayerLeft() {
+    int playerX = this.getPosX();
+    int xMinusSpeed = playerX - this.getActorSpeed();
 
-    player.setPosX(xMinusSpeed);
+    this.setPosX(xMinusSpeed);
   }
 
 }

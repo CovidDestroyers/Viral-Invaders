@@ -31,6 +31,8 @@ public class Virus extends Actor {
     graphics.fillRect(getPosX(), getPosY(), 30, 30);
   }
 
+  // public void moveVirus(Virus v)
+
 
 
   /*

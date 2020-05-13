@@ -30,13 +30,13 @@ public class VirusArmy {
 
     for (int i = 0; i < 80; i++) {
       Virus virus = new Virus(posX, posY, 3);
-      virusArmy.add(virus);
 
+      virusArmy.add(virus);
       posX += 40;
+
       if (i == newRowCount) {
         posX = 55;
         posY += 40;
-
         newRowCount += 10;
       }
     }

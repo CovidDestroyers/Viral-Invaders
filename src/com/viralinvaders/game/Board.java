@@ -68,7 +68,7 @@ public class Board extends JPanel implements Runnable {
 
     // Player/Ship creation
     player.addPlayerToBoard(graphics);
-    player.movePlayer(player);
+    player.movePlayer();
 
     //Shots creation
     // Check shot array if isMoveUp
