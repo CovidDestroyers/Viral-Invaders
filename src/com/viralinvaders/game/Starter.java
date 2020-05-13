@@ -1,6 +1,6 @@
 package com.viralinvaders.game;
 
-import javax.swing.*;
+import javax.swing.JFrame;
 
 public class Starter extends JFrame {
 

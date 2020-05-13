@@ -70,16 +70,11 @@ public class Board  extends JPanel implements Runnable {
     super.paint(graphics);
 
 
-
-
-
     /*
      * =============================================
      * ============= Create Ship ===================
      * =============================================
      */
-
-
     graphics.setColor(Color.RED);
     graphics.fillRect(player.getPosX(), player.getPosY() , 20, 20);
 
@@ -90,11 +85,28 @@ public class Board  extends JPanel implements Runnable {
      * ================  Shots =====================
      * =============================================
      */
+    // Check shot array if isMoveUp
+    // get current shots posY
+    // subtract the speed
+    // set to new current posY
 
-    graphics.setColor(Color.white);
-    graphics.fillOval(player.getPosX()+8, player.getPosY(), 3, 7);
+    // re-render all shots
+      // go through shot array
+      // set color
+      // fill rect with shot posX and shotPosY, 3, 7
 
-    shot.addShotToBoard(graphics, Color.white);
+
+    if (shot.isMoveUp()) {
+      int shotY = shot.getPosY();
+      int shotYminusSpeed = shotY -= shot.getActorSpeed();
+
+      shot.setPosY(shotYminusSpeed);
+
+      graphics.setColor(Color.white);
+      graphics.fillRect(shot.getPosX()+8, shot.getPosY(), 4, 10);
+    }
+
+    // shot.addShotToBoard(graphics, Color.white);
 
 
     /*
@@ -123,8 +135,9 @@ public class Board  extends JPanel implements Runnable {
       player.setPosX(xMinusSpeed);
     }
 
+
     // Keeps all the graphics synced
-    // Toolkit.getDefaultToolkit().sync();
+    Toolkit.getDefaultToolkit().sync();
     graphics.dispose();
 
   }
@@ -255,8 +268,10 @@ public class Board  extends JPanel implements Runnable {
       }
 
       if (key == 32) {
-        Shot shot = new Shot();
-        shot.moveShot();
+        shot = new Shot(player.getPosX(), player.getPosY(), 3);
+        shot.setMoveUp(true);
+
+        // shot.moveShot();
         System.out.println("YOU FIRED AT THE VIRUS");
       }
     }

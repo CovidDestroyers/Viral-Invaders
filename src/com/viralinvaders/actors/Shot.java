@@ -23,7 +23,7 @@ public class Shot extends Actor {
 
   public Shot(int posX, int posY, int actorSpeed) {
     super(posX, posY, actorSpeed);
-    createShotArray();
+    // createShotArray();
   }
 
   public Shot() {
@@ -68,21 +68,26 @@ public class Shot extends Actor {
       int shotYaxis = shot.getPosY();
       int shotSpeed = shot.getActorSpeed();
 
-      shotYaxis +=20;
+      shotYaxis -= 20;
 
-      if (shot.isMoveUp()) {
-        int z = shotYaxis + shotSpeed;
-        shot.setPosY(z);
-      }
-
-      int shotNewY = shot.getPosY();
-
-      if (shotNewY <= 0) {
-        for (Shot shot1 : SHOT_ARRAY_LIST) {
-          shot1.setMoveUp(true);
-        }
-      }
+      // if (shot.isMoveUp()) {
+      //   int z = shotYaxis - shotSpeed;
+      //   shot.setPosY(z);
+      // }
+      //
+      // int shotNewY = shot.getPosY();
+      //
+      // if (shotNewY <= 0) {
+      //   for (Shot shot1 : SHOT_ARRAY_LIST) {
+      //     shot1.setMoveUp(false);
+      //   }
+      // }
     }
+  }
+
+
+  public void fire() {
+
   }
 
 

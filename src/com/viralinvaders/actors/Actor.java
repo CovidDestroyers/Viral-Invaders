@@ -77,5 +77,13 @@ public class Actor {
     this.width = width;
   }
 
+  public boolean isVisible() {
+    return isVisible;
+  }
+
+  public void setVisible(boolean visible) {
+    isVisible = visible;
+  }
+
 
 }
