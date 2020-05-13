@@ -66,7 +66,7 @@ public class Board extends JPanel implements Runnable {
 
     graphics.setColor(Color.RED);
     graphics.fillRect(player.getPosX(), player.getPosY(), 20, 20);
-    player.movePlayer(player);
+    player.movePlayer();
 
 
 
@@ -101,26 +101,7 @@ public class Board extends JPanel implements Runnable {
     // go through shot array
     // set color
     // fill rect with shot posX and shotPosY, 3, 7
-
     
-
-
-
-
-    if (shot.isMoveUp()) {
-      int shootMore = 0;
-
-      while (shootMore < 5) {
-
-        shootMore += 1;
-        int shotY = shot.getPosY();
-        int shotYminusSpeed = shotY - shot.getActorSpeed();
-        shot.setPosY(shotYminusSpeed);
-
-        graphics.setColor(Color.white);
-        graphics.fillRect(shot.getPosX() + 8, shot.getPosY(), 4, 10);
-      }
-    }
 
     // Virus Army
     virusArmy.addArmyToBoard(graphics, Color.GREEN);
