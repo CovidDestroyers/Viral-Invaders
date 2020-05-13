@@ -29,13 +29,13 @@ public class Ship extends Actor implements MouseMotionListener, MouseListener {
   }
 
 
-  public void drawShip(Graphics graphics) {
-    graphics.setColor(Color.GREEN);
-    graphics.fillOval(posX, posY, width, height);
-    if ((shot != null)) {
-      shot.drawShot(graphics);
-    }
-  }
+//  public void drawShip(Graphics graphics) {
+//    graphics.setColor(Color.GREEN);
+//    graphics.fillOval(posX, posY, width, height);
+//    if ((shot != null)) {
+//      shot.drawShot(graphics);
+//    }
+//  }
 
   public boolean checkWasHit(int xShot, int yShot) {
     if ((xShot >= posX) && (xShot <= (posX + width))) {

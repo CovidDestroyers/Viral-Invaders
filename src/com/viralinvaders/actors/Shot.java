@@ -23,12 +23,18 @@ public class Shot extends Actor {
 
   public Shot(int posX, int posY, int actorSpeed) {
     super(posX, posY, actorSpeed);
-    // createShotArray();
   }
 
   public Shot() {
-
   }
+
+
+  /*
+   * =============================================
+   * =========== Business Methods ================
+   * =============================================
+   */
+
 
 
   public void addShotToBoard(Graphics graphics, Color color) {
@@ -39,57 +45,38 @@ public class Shot extends Actor {
   }
 
 
-
-  /*
-   * =============================================
-   * =========== Business Methods ================
-   * =============================================
-   */
-
-
   public void createShotArray() {
-    int posX = ship.getPosX();
-    int posY = ship.getPosY();
+    System.out.println("create shot array");
+    int howMany = 10;
 
-    for (int i = 0; i < 1000; i++) {
+    for (int i = 0; i < howMany; i++) {
       shot = new Shot(ship.getPosX(), ship.getPosY(), 5);
       SHOT_ARRAY_LIST.add(shot);
-      posY += 40;
     }
   }
 
 
   public void moveShot() {
-    Shot s = new Shot();
-
-    System.out.println("MoveShot called");
-
     for (Shot shot : SHOT_ARRAY_LIST) {
-      int shotYaxis = shot.getPosY();
+      int shotYaxis = ship.getPosY();
       int shotSpeed = shot.getActorSpeed();
 
-      shotYaxis -= 20;
-
-      // if (shot.isMoveUp()) {
-      //   int z = shotYaxis - shotSpeed;
-      //   shot.setPosY(z);
-      // }
-      //
-      // int shotNewY = shot.getPosY();
-      //
-      // if (shotNewY <= 0) {
-      //   for (Shot shot1 : SHOT_ARRAY_LIST) {
-      //     shot1.setMoveUp(false);
-      //   }
-      // }
+       if (shot.isMoveUp()) {
+         int z = shotYaxis - shotSpeed;
+         shot.setPosY(z);
+       }
     }
+    for (Shot shot : SHOT_ARRAY_LIST){
+      int shotNewY = shot.getPosY();
+
+      if (shotNewY <=0 ){
+        for (Shot shot1 : SHOT_ARRAY_LIST){
+          shot.setMoveUp(true);
+        }
+      }
+    }
+
   }
-
-
-  public void fire() {
-
-  }
-
 
 
   /*
@@ -105,8 +92,6 @@ public class Shot extends Actor {
 
 
 
-
-
   /*
    * =============================================
    * =========== Setter Methods ================
@@ -119,7 +104,7 @@ public class Shot extends Actor {
   }
 
 
-  public void drawShot(Graphics graphics) {
-
-  }
+//  public void drawShot(Graphics graphics) {
+//
+//  }
 }
