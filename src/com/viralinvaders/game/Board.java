@@ -6,12 +6,10 @@ import com.viralinvaders.actors.VirusArmy;
 
 import javax.swing.JPanel;
 import java.awt.Toolkit;
-import java.awt.Dimension;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 
@@ -23,9 +21,6 @@ public class Board extends JPanel implements Runnable {
   private int posX = 0;
   private int posY = 0;
 
-  private Dimension dimension;
-  private String message = "Click board to start.";
-  private BufferedImage image;
   private Thread animator;
   private Shot shot;
   private static final ArrayList<Shot> SHOT_ARRAY_LIST = new ArrayList<>();
@@ -43,7 +38,7 @@ public class Board extends JPanel implements Runnable {
 
     addKeyListener(new TAdapter());
     setFocusable(true);
-    setDimension(new Dimension(BOARD_WIDTH, BOARD_HEIGHT));
+    // setDimension(new Dimension(BOARD_WIDTH, BOARD_HEIGHT));
     setBackground(Color.BLACK);
     setDoubleBuffered(true);
 
@@ -51,9 +46,9 @@ public class Board extends JPanel implements Runnable {
     virusArmy = new VirusArmy();
 
 
-    if (animator == null || !inGame) {
-      animator = new Thread(this);
-      animator.start();
+    if (getAnimator() == null || !inGame) {
+      setAnimator(new Thread(this));
+      getAnimator().start();
     }
   }
 
@@ -163,24 +158,12 @@ public class Board extends JPanel implements Runnable {
     this.inGame = inGame;
   }
 
-  public void setDimension(Dimension dimension) {
-    this.dimension = dimension;
-  }
-
   public void setPosX(int posX) {
     this.posX = posX;
   }
 
   public void setPosY(int posY) {
     this.posY = posY;
-  }
-
-  public void setMessage(String message) {
-    this.message = message;
-  }
-
-  public void setImage(BufferedImage image) {
-    this.image = image;
   }
 
   public void setAnimator(Thread animator) {
@@ -198,24 +181,12 @@ public class Board extends JPanel implements Runnable {
     return inGame;
   }
 
-  public Dimension getDimension() {
-    return dimension;
-  }
-
   public int getPosX() {
     return posX;
   }
 
   public int getPosY() {
     return posY;
-  }
-
-  public String getMessage() {
-    return message;
-  }
-
-  public BufferedImage getImage() {
-    return image;
   }
 
   public Thread getAnimator() {
