@@ -3,7 +3,7 @@ package com.viralinvaders.actors;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Shot extends Actor{
+public class Shot extends Actor {
 
   private boolean moveUp;
 
@@ -21,7 +21,7 @@ public class Shot extends Actor{
    */
 
 
-  public Shot(int posX, int posY, int actorSpeed){
+  public Shot(int posX, int posY, int actorSpeed) {
     super(posX, posY, actorSpeed);
     createShotArray();
   }
@@ -47,7 +47,6 @@ public class Shot extends Actor{
    */
 
 
-
   public void createShotArray() {
     int posX = ship.getPosX();
     int posY = ship.getPosY();
@@ -60,19 +59,22 @@ public class Shot extends Actor{
   }
 
 
-
-
   public void moveShot() {
+    Shot s = new Shot();
+
+    System.out.println("MoveShot called");
+
     for (Shot shot : SHOT_ARRAY_LIST) {
       int shotYaxis = shot.getPosY();
       int shotSpeed = shot.getActorSpeed();
+
+      shotYaxis +=20;
 
       if (shot.isMoveUp()) {
         int z = shotYaxis + shotSpeed;
         shot.setPosY(z);
       }
-    }
-    for (Shot shot : SHOT_ARRAY_LIST) {
+
       int shotNewY = shot.getPosY();
 
       if (shotNewY <= 0) {
@@ -85,13 +87,11 @@ public class Shot extends Actor{
 
 
 
-
   /*
    * =============================================
    * =========== Getter Methods ================
    * =============================================
    */
-
 
 
   public boolean isMoveUp() {
@@ -109,17 +109,8 @@ public class Shot extends Actor{
    */
 
 
-
-
   public void setMoveUp(boolean moveUp) {
     this.moveUp = moveUp;
-  }
-
-
-
-  public void addShotToBoard(Graphics g, Shot shot) {
-    g.setColor(Color.PINK);
-    g.fillRect( shot.getPosX() + 9 , shot.getPosY(), 4, 10);
   }
 
 
