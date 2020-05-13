@@ -22,11 +22,10 @@ public class Board extends JPanel implements Runnable {
   private int posY = 0;
 
   private Thread animator;
-  private Shot shot;
-  private static final ArrayList<Shot> SHOT_ARRAY_LIST = new ArrayList<>();
-
   private final Player player;
   private final VirusArmy virusArmy;
+  private Shot shot;
+
 
   /*
    * =============================================
@@ -35,16 +34,16 @@ public class Board extends JPanel implements Runnable {
    */
   public Board() {
     player = new Player((BOARD_WIDTH / 2), (BOARD_HEIGHT / 2) + 200, 5);
+//    shot = new Shot(player.getPosX(), player.getPosY(), 5);
+    virusArmy = new VirusArmy();
+
+
 
     addKeyListener(new TAdapter());
     setFocusable(true);
     // setDimension(new Dimension(BOARD_WIDTH, BOARD_HEIGHT));
     setBackground(Color.BLACK);
     setDoubleBuffered(true);
-
-    shot = new Shot();
-    virusArmy = new VirusArmy();
-
 
     if (getAnimator() == null || !inGame) {
       setAnimator(new Thread(this));
@@ -62,13 +61,35 @@ public class Board extends JPanel implements Runnable {
   public void paint(Graphics graphics) {
     super.paint(graphics);
 
-    int xCoord = 10;
-    int yCoord = HEIGHT - 60;
-
 
     // Player/Ship creation
-    player.addPlayerToBoard(graphics);
-    player.movePlayer();
+
+    graphics.setColor(Color.RED);
+    graphics.fillRect(player.getPosX(), player.getPosY(), 20, 20);
+    player.movePlayer(player);
+
+
+
+    //Virus Army Creation
+    virusArmy.addArmyToBoard(graphics, Color.GREEN);
+    virusArmy.moveArmy();
+
+
+
+    // Shot Creation
+//    shot.addShotToBoard(graphics, Color.WHITE);
+//    shot.moveShot(shot);
+    if (!Shot.SHOT_ARRAY_LIST.isEmpty()){
+      for (Shot shots: Shot.SHOT_ARRAY_LIST){
+        if (shots.isMoveUp()){
+          shots.addShotToBoard(graphics, Color.white);
+          shots.moveShot();
+        }else{
+          Shot.SHOT_ARRAY_LIST.remove(shots);
+
+        }
+      }
+    }
 
     //Shots creation
     // Check shot array if isMoveUp
@@ -80,6 +101,10 @@ public class Board extends JPanel implements Runnable {
     // go through shot array
     // set color
     // fill rect with shot posX and shotPosY, 3, 7
+
+    
+
+
 
 
     if (shot.isMoveUp()) {
@@ -183,10 +208,11 @@ public class Board extends JPanel implements Runnable {
     @Override
     public void keyReleased(KeyEvent event) {
       super.keyReleased(event);
-      int key = event.getKeyCode();
+//      int key = event.getKeyCode();
 
       player.setMoveRight(false);
       player.setMoveLeft(false);
+      shot.setMoveUp(true);
     }
 
     @Override
@@ -197,16 +223,18 @@ public class Board extends JPanel implements Runnable {
       System.out.println(event.getKeyCode() + " " + event.getKeyChar());
 
       if (key == 39) {
-        // System.out.println("KEY CODE: " + key);
+//         System.out.println("KEY CODE: " + key);
         player.setMoveRight(true);
       }
       if (key == 37) {
-          player.setMoveLeft(true);
+        player.setMoveLeft(true);
       }
 
       if (key == 32) {
-        shot = new Shot(player.getPosX(), player.getPosY(), 3);
+        shot = new Shot(player.getPosX(), player.getPosY(), 5);
         shot.setMoveUp(true);
+        Shot.SHOT_ARRAY_LIST.add(shot);
+//        shot.moveShot();
       }
     }
   }
