@@ -1,26 +1,39 @@
 package com.viralinvaders.actors;
 
-import java.awt.*;
+import com.viralinvaders.game.Board;
+import org.jetbrains.annotations.NotNull;
+
+import java.awt.Graphics;
+import java.awt.Color;
 import java.util.ArrayList;
 
 public class VirusArmy {
-  private Virus virus;
-  public static final ArrayList<Virus> VIRUS_ARMY = new ArrayList<>();
+  private ArrayList<Virus> virusArmy = new ArrayList<>();
+
+  /*
+   * =============================================
+   * ============= Constructors ==================
+   * =============================================
+   */
 
   public VirusArmy() {
-    // TODO: Initliase virus army here
     createVirusArmy();
   }
 
 
+  /*
+   * =============================================
+   * =========== Business Methods ================
+   * =============================================
+   */
   public void createVirusArmy() {
     int posX = 55;
     int posY = 30;
     int newRowCount = 9;
 
     for (int i = 0; i < 80; i++) {
-      virus = new Virus(posX, posY, 3);
-      VIRUS_ARMY.add(virus);
+      Virus virus = new Virus(posX, posY, 3);
+      virusArmy.add(virus);
 
       posX += 40;
       if (i == newRowCount) {
@@ -34,16 +47,15 @@ public class VirusArmy {
 
 
   public void addArmyToBoard(Graphics graphics, Color color) {
-    for (Virus virus : VIRUS_ARMY) {
+    for (Virus virus : virusArmy) {
       graphics.setColor(color);
       graphics.fillRect(virus.getPosX(), virus.getPosY(), 30, 30);
     }
-    // moveArmy();
   }
 
 
   public void moveArmy() {
-    for (Virus virus : VIRUS_ARMY) {
+    for (Virus virus : virusArmy) {
       int virusLocationXaxis = virus.getPosX();
       int virusSpeed = virus.getActorSpeed();
 
@@ -58,30 +70,41 @@ public class VirusArmy {
       }
     }
 
-    // Check bounds and if at 500px, go the other direction
-    for (Virus virus : VIRUS_ARMY) {
-      int virusNewX = virus.getPosX();
+    checkBounds();
+  }
 
-      if (virusNewX >= 470) {
-        for (Virus virus1 : VIRUS_ARMY) {
-          virus1.setMoveLeft(true);
-          virus1.setMoveRight(false);
-        }
-      }
 
-      if (virusNewX <= 5) {
-        for (Virus virus1 : VIRUS_ARMY) {
-          virus1.setMoveLeft(false);
-          virus1.setMoveRight(true);
-        }
-      }
+  /*
+   * =============================================
+   * =========== Private Methods ================
+   * =============================================
+   */
+  private void checkBounds() {
+    for (Virus virus : virusArmy) {
+      checkRightSideBound(virus);
+      checkLeftSideBound(virus);
     }
-    // end of bounds check
+  }
 
+  private void checkRightSideBound(Virus virus) {
+    if (virus.getPosX() >= 470) {
+      setLeftRightForArmy(true, false);
+    }
+  }
+
+  private void checkLeftSideBound(Virus virus) {
+    if (virus.getPosX() <= 5) {
+      setLeftRightForArmy(false, true);
+    }
+  }
+
+  private void setLeftRightForArmy(boolean moveLeft, boolean moveRight) {
+    for (Virus virus1 : virusArmy) {
+      virus1.setMoveLeft(moveLeft);
+      virus1.setMoveRight(moveRight);
+    }
   }
 
 
-  public boolean checkWasHit(int xPos, int shotHeight) {
-    return true;
-  }
+
 }

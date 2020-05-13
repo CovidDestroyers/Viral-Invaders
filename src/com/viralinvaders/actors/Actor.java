@@ -4,15 +4,14 @@ import java.awt.*;
 
 public class Actor {
 
-  private boolean setForRemoval;
-  protected int height;
   protected int width;
+  protected int height;
 
   protected int posX;
   protected int posY;
   protected int actorSpeed;
 
-  protected boolean isVisible;
+  private boolean setForRemoval;
 
 
   /*
@@ -28,6 +27,12 @@ public class Actor {
     setPosX(posX);
     setPosY(posY);
     setActorSpeed(actorSpeed);
+  }
+
+  public Actor(int posX, int posY, int actorSpeed, int width, int height) {
+    this(posX, posY, actorSpeed);
+    setWidth(width);
+    setHeight(height);
   }
 
 
@@ -77,12 +82,12 @@ public class Actor {
     this.width = width;
   }
 
-  public boolean isVisible() {
-    return isVisible;
+  public boolean isSetForRemoval() {
+    return setForRemoval;
   }
 
-  public void setVisible(boolean visible) {
-    isVisible = visible;
+  public void setSetForRemoval(boolean setForRemoval) {
+    this.setForRemoval = setForRemoval;
   }
 
 

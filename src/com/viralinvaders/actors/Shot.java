@@ -8,7 +8,7 @@ public class Shot extends Actor {
   private boolean moveUp;
 
   private Shot shot;
-  private Ship ship;
+  private Player player;
 
   public static final ArrayList<Shot> SHOT_ARRAY_LIST = new ArrayList<>();
 
@@ -48,11 +48,11 @@ public class Shot extends Actor {
 
 
   public void createShotArray() {
-    int posX = ship.getPosX();
-    int posY = ship.getPosY();
+    int posX = player.getPosX();
+    int posY = player.getPosY();
 
     for (int i = 0; i < 1000; i++) {
-      shot = new Shot(ship.getPosX(), ship.getPosY(), 5);
+      shot = new Shot(player.getPosX(), player.getPosY(), 5);
       SHOT_ARRAY_LIST.add(shot);
       posY += 40;
     }

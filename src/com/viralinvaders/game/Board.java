@@ -4,8 +4,11 @@ import com.viralinvaders.actors.Player;
 import com.viralinvaders.actors.Shot;
 import com.viralinvaders.actors.VirusArmy;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+import java.awt.Toolkit;
+import java.awt.Dimension;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -24,9 +27,10 @@ public class Board  extends JPanel implements Runnable {
   private String message = "Click board to start.";
   private BufferedImage image;
   private Thread animator;
-  private Player player;
-  private VirusArmy army;
   private Shot shot;
+
+  private final Player player;
+  private final VirusArmy virusArmy;
 
 
 
@@ -47,7 +51,7 @@ public class Board  extends JPanel implements Runnable {
     setDoubleBuffered(true);
 
     shot = new Shot();
-    army = new VirusArmy();
+    virusArmy = new VirusArmy();
 
 
     if (animator == null || !inGame) {
@@ -63,18 +67,14 @@ public class Board  extends JPanel implements Runnable {
    * =============================================
    */
 
+  @Override
   public void paint(Graphics graphics) {
+    super.paint(graphics);
+
     int xCoord = 10;
     int yCoord = HEIGHT - 60;
 
-    super.paint(graphics);
 
-
-    /*
-     * =============================================
-     * ============= Create Ship ===================
-     * =============================================
-     */
     graphics.setColor(Color.RED);
     graphics.fillRect(player.getPosX(), player.getPosY() , 20, 20);
 
@@ -108,16 +108,9 @@ public class Board  extends JPanel implements Runnable {
 
     // shot.addShotToBoard(graphics, Color.white);
 
-
-    /*
-     * =============================================
-     * ============== Virus Army ===================
-     * =============================================
-     */
-
-    army.addArmyToBoard(graphics, Color.GREEN);
-
-    army.moveArmy();
+    //
+    virusArmy.addArmyToBoard(graphics, Color.GREEN);
+    virusArmy.moveArmy();
 
 
     // Should probably be in its own method
@@ -163,10 +156,9 @@ public class Board  extends JPanel implements Runnable {
 
   /*
    * =============================================
-   * =========== Getter Methods ==================
+   * =========== Setter Methods ==================
    * =============================================
    */
-
 
   public void setInGame(boolean inGame) {
     this.inGame = inGame;
@@ -202,8 +194,6 @@ public class Board  extends JPanel implements Runnable {
    * =========== Getter Methods ==================
    * =============================================
    */
-
-
 
   public boolean isInGame() {
     return inGame;
