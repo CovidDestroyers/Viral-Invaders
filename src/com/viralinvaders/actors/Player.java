@@ -25,6 +25,19 @@ public class Player extends Actor {
    * =============================================
    */
 
+  // TODO: Look this over again for ideas on collision detection
+  // public boolean checkWasHit(int xShot, int yShot) {
+  //   if ((xShot >= posX) && (xShot <= (posX + width))) {
+  //     if ((yShot >= posY) && (yShot <= (posY + height))) {
+  //       wasHit = true;
+  //
+  //       System.out.println("You were hit!");
+  //       return true;
+  //     }
+  //   }
+  //   return false;
+  // }
+
 
   /*
    * =============================================

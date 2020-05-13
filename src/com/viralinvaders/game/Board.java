@@ -33,15 +33,11 @@ public class Board extends JPanel implements Runnable {
   private final Player player;
   private final VirusArmy virusArmy;
 
-
-
-
   /*
    * =============================================
-   * ============= Constructors ==================
+   * ============= Constructor ==================
    * =============================================
    */
-
   public Board() {
     player = new Player((BOARD_WIDTH / 2), (BOARD_HEIGHT / 2) + 200, 5);
 
@@ -60,7 +56,6 @@ public class Board extends JPanel implements Runnable {
       animator.start();
     }
   }
-
 
   /*
    * =============================================

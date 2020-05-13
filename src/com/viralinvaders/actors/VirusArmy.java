@@ -1,8 +1,5 @@
 package com.viralinvaders.actors;
 
-import com.viralinvaders.game.Board;
-import org.jetbrains.annotations.NotNull;
-
 import java.awt.Graphics;
 import java.awt.Color;
 import java.util.ArrayList;
