@@ -70,11 +70,18 @@ public class Board  extends JPanel implements Runnable {
     super.paint(graphics);
 
 
-    // For ship/Player
+
+
+
+    /*
+     * =============================================
+     * ============= Create Ship ===================
+     * =============================================
+     */
+
+
     graphics.setColor(Color.RED);
     graphics.fillRect(player.getPosX(), player.getPosY() , 20, 20);
-
-
 
 
 
@@ -84,21 +91,10 @@ public class Board  extends JPanel implements Runnable {
      * =============================================
      */
 
+    graphics.setColor(Color.white);
+    graphics.fillOval(player.getPosX()+8, player.getPosY(), 3, 7);
+
     shot.addShotToBoard(graphics, Color.white);
-    shot.moveShot();
-
-    if (shot.isMoveUp()){
-      int shotX = player.getPosX();
-      int shotY = player.getPosY();
-      int up = shotY += shot.getActorSpeed();
-
-      shot.setPosY(up);
-
-      graphics.dispose();
-    }
-
-
-
 
 
     /*
@@ -259,6 +255,7 @@ public class Board  extends JPanel implements Runnable {
       }
 
       if (key == 32) {
+        Shot shot = new Shot();
         shot.moveShot();
         System.out.println("YOU FIRED AT THE VIRUS");
       }
