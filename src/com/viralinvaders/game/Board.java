@@ -39,7 +39,7 @@ public class Board extends JPanel implements Runnable {
 
 
 
-    addKeyListener(new TAdapter());
+    addKeyListener(new WatchMyKeys());
     setFocusable(true);
     // setDimension(new Dimension(BOARD_WIDTH, BOARD_HEIGHT));
     setBackground(Color.BLACK);
@@ -62,14 +62,6 @@ public class Board extends JPanel implements Runnable {
     super.paint(graphics);
 
 
-    // Player/Ship creation
-
-    graphics.setColor(Color.RED);
-    graphics.fillRect(player.getPosX(), player.getPosY(), 20, 20);
-    player.movePlayer();
-
-
-
     //Virus Army Creation
     virusArmy.addArmyToBoard(graphics, Color.GREEN);
     virusArmy.moveArmy();
@@ -77,8 +69,6 @@ public class Board extends JPanel implements Runnable {
 
 
     // Shot Creation
-//    shot.addShotToBoard(graphics, Color.WHITE);
-//    shot.moveShot(shot);
     if (!Shot.SHOT_ARRAY_LIST.isEmpty()){
       for (Shot shots: Shot.SHOT_ARRAY_LIST){
         if (shots.isMoveUp()){
@@ -86,7 +76,6 @@ public class Board extends JPanel implements Runnable {
           shots.moveShot();
         }else{
           Shot.SHOT_ARRAY_LIST.remove(shots);
-
         }
       }
     }
@@ -106,6 +95,10 @@ public class Board extends JPanel implements Runnable {
     // Virus Army
     virusArmy.addArmyToBoard(graphics, Color.GREEN);
     virusArmy.moveArmy();
+
+    // Player/Ship creation
+    player.addToBoard(graphics);
+    player.movePlayer();
 
     // Keeps all the graphics synced
     Toolkit.getDefaultToolkit().sync();
@@ -184,16 +177,14 @@ public class Board extends JPanel implements Runnable {
    * =============================================
    */
 
-  private class TAdapter extends KeyAdapter {
+  private class WatchMyKeys extends KeyAdapter {
 
     @Override
     public void keyReleased(KeyEvent event) {
       super.keyReleased(event);
-//      int key = event.getKeyCode();
 
       player.setMoveRight(false);
       player.setMoveLeft(false);
-//      shot.setMoveUp(true);
     }
 
     @Override
@@ -204,9 +195,9 @@ public class Board extends JPanel implements Runnable {
       System.out.println(event.getKeyCode() + " " + event.getKeyChar());
 
       if (key == 39) {
-//         System.out.println("KEY CODE: " + key);
         player.setMoveRight(true);
       }
+
       if (key == 37) {
         player.setMoveLeft(true);
       }
@@ -215,7 +206,6 @@ public class Board extends JPanel implements Runnable {
         shot = new Shot(player.getPosX(), player.getPosY(), 5);
         shot.setMoveUp(true);
         Shot.SHOT_ARRAY_LIST.add(shot);
-//        shot.moveShot();
       }
     }
   }
