@@ -1,7 +1,7 @@
 package com.viralinvaders.actors;
 
-import java.awt.*;
-import java.sql.SQLOutput;
+import java.awt.Graphics;
+import java.awt.Color;
 import java.util.ArrayList;
 
 public class Shot extends Actor {

@@ -39,7 +39,7 @@ public class Board extends JPanel implements Runnable {
 
 
 
-    addKeyListener(new TAdapter());
+    addKeyListener(new WatchMyKeys());
     setFocusable(true);
     // setDimension(new Dimension(BOARD_WIDTH, BOARD_HEIGHT));
     setBackground(Color.BLACK);
@@ -161,7 +161,7 @@ public class Board extends JPanel implements Runnable {
    * =============================================
    */
 
-  private class TAdapter extends KeyAdapter {
+  private class WatchMyKeys extends KeyAdapter {
 
     @Override
     public void keyReleased(KeyEvent event) {

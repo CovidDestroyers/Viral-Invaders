@@ -41,29 +41,10 @@ public class Virus extends Actor {
    * =============================================
    */
 
-  // SET METHODS
-  public void setMoveLeft(boolean moveLeft) {
-    this.moveLeft = moveLeft;
-  }
-
-
-  public void setMoveRight(boolean moveRight) {
-    this.moveRight = moveRight;
-  }
-
   public void setVisible(boolean visible) {
     isVisible = visible;
   }
 
-
-  // GET METHODS
-  public boolean isMoveLeft() {
-    return moveLeft;
-  }
-
-  public boolean isMoveRight() {
-    return moveRight;
-  }
 
   public boolean isVisible() {
     return isVisible;
