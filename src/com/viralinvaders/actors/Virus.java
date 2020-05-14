@@ -4,10 +4,6 @@ import java.awt.*;
 
 public class Virus extends Actor {
 
-  private boolean moveRight;
-  private boolean moveLeft;
-  private boolean isVisible;
-
   /*
    * =============================================
    * ============= Constructors ==================
@@ -18,7 +14,9 @@ public class Virus extends Actor {
 
     setMoveLeft(false);
     setMoveRight(true);
-    setVisible(true);
+    setReadyForRemoval(false);
+    setWidth(30);
+    setHeight(30);
   }
 
   /*
@@ -28,36 +26,40 @@ public class Virus extends Actor {
    */
   public void addVirusToBoard(Graphics graphics) {
     graphics.setColor(Color.GREEN);
-    graphics.fillRect(getPosX(), getPosY(), 30, 30);
-  }
-
-  // public void moveVirus(Virus v)
-
-
-
-  /*
-   * =============================================
-   * =========== Accessor Methods ================
-   * =============================================
-   */
-
-  public void setVisible(boolean visible) {
-    isVisible = visible;
+    graphics.fillRect(getPosX(), getPosY(), getWidth(), getHeight());
   }
 
 
-  public boolean isVisible() {
-    return isVisible;
+  public void checkVirusWasHit(Shot shot) {
+    if (getBounds().intersects(shot.getBounds())) {
+      System.out.println("You were hit");
+      setReadyForRemoval(true);
+    }
   }
 
 
   @Override
   public String toString() {
     return "Virus{" +
-           "moveRight=" + moveRight +
+           "width=" + width +
+           ", height=" + height +
+           ", posX=" + posX +
+           ", posY=" + posY +
+           ", actorSpeed=" + actorSpeed +
+           ", moveRight=" + moveRight +
            ", moveLeft=" + moveLeft +
-           ", isVisible=" + isVisible +
-           ", visible=" + isVisible() +
-           "} " + super.toString();
+           ", moveUp=" + moveUp +
+           ", color=" + color +
+           ", moveRight=" + isMoveRight() +
+           ", moveLeft=" + isMoveLeft() +
+           ", color=" + getColor() +
+           ", readyForRemoval=" + isReadyForRemoval() +
+           ", width=" + getWidth() +
+           ", height=" + getHeight() +
+           ", actorSpeed=" + getActorSpeed() +
+           ", posY=" + getPosY() +
+           ", posX=" + getPosX() +
+           ", moveUp=" + isMoveUp() +
+           '}';
   }
 }

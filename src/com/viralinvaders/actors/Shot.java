@@ -16,10 +16,11 @@ public class Shot extends Actor {
    * =============================================
    */
 
-
   public Shot(int posX, int posY, int actorSpeed) {
     super(posX, posY, actorSpeed);
     setMoveUp(false);
+    setWidth(3);
+    setHeight(7);
   }
 
 
@@ -31,7 +32,7 @@ public class Shot extends Actor {
 
   public void addShotToBoard(Graphics graphics, Color color) {
       graphics.setColor(color);
-      graphics.fillRect(getPosX(), getPosY(), 3, 7);
+      graphics.fillRect(getPosX(), getPosY(), getWidth(), getHeight());
     }
 
 

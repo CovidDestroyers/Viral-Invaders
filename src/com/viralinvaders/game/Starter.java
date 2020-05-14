@@ -1,12 +1,15 @@
 package com.viralinvaders.game;
 
 import javax.swing.JFrame;
+import java.util.concurrent.CompletableFuture;
 
 public class Starter extends JFrame {
 
 
   public Starter() {
-    add(new Board());
+    Board board = new Board();
+    CompletableFuture.runAsync(board);
+    add(board);
     setTitle("Viral Invaders");
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     setSize(Board.BOARD_WIDTH, Board.BOARD_HEIGHT);
@@ -19,6 +22,5 @@ public class Starter extends JFrame {
   public static void main(String[] args) {
     new Starter();
   }
-
 
 }

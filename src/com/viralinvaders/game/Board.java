@@ -1,16 +1,16 @@
 package com.viralinvaders.game;
 
+import com.viralinvaders.actors.Actor;
 import com.viralinvaders.actors.Player;
 import com.viralinvaders.actors.Shot;
 import com.viralinvaders.actors.VirusArmy;
 
 import javax.swing.JPanel;
-import java.awt.Toolkit;
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Collection;
 
 
 public class Board extends JPanel implements Runnable {
@@ -34,7 +34,6 @@ public class Board extends JPanel implements Runnable {
    */
   public Board() {
     player = new Player((BOARD_WIDTH / 2), (BOARD_HEIGHT / 2) + 200, 5);
-//    shot = new Shot(player.getPosX(), player.getPosY(), 5);
     virusArmy = new VirusArmy();
 
 
@@ -60,28 +59,29 @@ public class Board extends JPanel implements Runnable {
   @Override
   public void paint(Graphics graphics) {
     super.paint(graphics);
-
+    player.addToBoard(graphics);
 
     //Virus Army Creation
-    virusArmy.addArmyToBoard(graphics, Color.GREEN);
+    virusArmy.addArmyToBoard(graphics);
     virusArmy.moveArmy();
-
-
 
     // Shot Creation
     if (!Shot.SHOT_ARRAY_LIST.isEmpty()){
       for (Shot shots: Shot.SHOT_ARRAY_LIST){
+
         if (shots.isMoveUp()){
           shots.addShotToBoard(graphics, Color.white);
           shots.moveShot();
-        }else{
+        }
+        else{
+          // TODO: This will throw a ConcurrentModificationException. So need to rethink this just a little bit
           Shot.SHOT_ARRAY_LIST.remove(shots);
         }
+        virusArmy.checkArmyForHits(shot);
       }
     }
 
     // Player/Ship creation
-    player.addToBoard(graphics);
     player.movePlayer();
 
     // Keeps all the graphics synced
@@ -89,11 +89,10 @@ public class Board extends JPanel implements Runnable {
     graphics.dispose();
   }
 
-
   @Override
   public void run() {
     long time = System.currentTimeMillis();
-    int animationDelay = 50;
+    int animationDelay = 65;
 
     while (true) {
       repaint();

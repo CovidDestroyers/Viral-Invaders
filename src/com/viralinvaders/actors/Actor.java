@@ -1,7 +1,6 @@
 package com.viralinvaders.actors;
 
-import java.awt.Graphics;
-import java.awt.Color;
+import java.awt.*;
 
 public abstract class Actor {
 
@@ -75,6 +74,10 @@ public abstract class Actor {
     int xMinusSpeed = currentXPos- this.getActorSpeed();
 
     this.setPosX(xMinusSpeed);
+  }
+
+  public Rectangle getBounds() {
+    return new Rectangle(getPosX(),getPosY(),getWidth(), getHeight());
   }
 
 

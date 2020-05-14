@@ -3,6 +3,8 @@ package com.viralinvaders.actors;
 import java.awt.Graphics;
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.ConcurrentModificationException;
 
 public class VirusArmy {
   private ArrayList<Virus> virusArmy = new ArrayList<>();
@@ -29,7 +31,7 @@ public class VirusArmy {
     int newRowCount = 9;
 
     for (int i = 0; i < 80; i++) {
-      Virus virus = new Virus(posX, posY, 3);
+      Virus virus = new Virus(posX, posY, 2);
 
       virusArmy.add(virus);
       posX += 40;
@@ -43,9 +45,16 @@ public class VirusArmy {
   }
 
 
-  public void addArmyToBoard(Graphics graphics, Color color) {
-    for (Virus virus : virusArmy) {
-      virus.addVirusToBoard(graphics);
+  public void addArmyToBoard(Graphics graphics) {
+    for (int i = 0; i < virusArmy.size(); i++) {
+      Virus virus = virusArmy.get(i);
+
+      if (virus.isReadyForRemoval()) {
+        virusArmy.remove(virus);
+      }
+      else {
+        virus.addVirusToBoard(graphics);
+      }
     }
   }
 
@@ -56,18 +65,22 @@ public class VirusArmy {
       int virusSpeed = virus.getActorSpeed();
 
       if (virus.isMoveRight()) {
-        int z = virusLocationXaxis + virusSpeed;
-        virus.setPosX(z);
+        virus.moveActorRight();
       }
 
       if (virus.isMoveLeft()) {
-        int k = virusLocationXaxis - virusSpeed;
-        virus.setPosX(k);
+        virus.moveActorLeft();
       }
     }
-
     checkBounds();
   }
+
+  public void checkArmyForHits(Shot shot) {
+    for (Virus virus : virusArmy) {
+      virus.checkVirusWasHit(shot);
+    }
+  }
+
 
 
   /*
@@ -102,5 +115,11 @@ public class VirusArmy {
   }
 
 
+  public int size() {
+    return virusArmy.size();
+  }
 
+  public Collection<? extends Actor> getArmy() {
+    return virusArmy;
+  }
 }
