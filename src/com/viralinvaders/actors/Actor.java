@@ -1,6 +1,8 @@
 package com.viralinvaders.actors;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Color;
+import java.awt.Rectangle;
 
 public abstract class Actor {
 

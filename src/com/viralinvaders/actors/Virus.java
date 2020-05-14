@@ -1,6 +1,7 @@
 package com.viralinvaders.actors;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Color;
 
 public class Virus extends Actor {
 

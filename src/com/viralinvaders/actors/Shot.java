@@ -8,8 +8,6 @@ public class Shot extends Actor {
 
   public static final ArrayList<Shot> SHOT_ARRAY_LIST = new ArrayList<>();
 
-
-
   /*
    * =============================================
    * ============= Constructors ==================
@@ -36,12 +34,10 @@ public class Shot extends Actor {
     }
 
 
-
-  public boolean moveShot() {
+  public void moveShot() {
     if (isMoveUp()) {
       moveShotUp();
     }
-    return moveUp;
   }
 
   int moveShotUp() {
