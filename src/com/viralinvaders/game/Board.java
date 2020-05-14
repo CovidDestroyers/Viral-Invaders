@@ -27,6 +27,7 @@ public class Board extends JPanel implements Runnable {
    */
   public Board() {
     player = new Player((BOARD_WIDTH / 2), (BOARD_HEIGHT / 2) + 200, 5);
+
     virusArmy = new VirusArmy();
     addKeyListener(new WatchMyKeys());
     setFocusable(true);
