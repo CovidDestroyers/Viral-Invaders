@@ -4,6 +4,9 @@ import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
 * Actor Tester.
 *
@@ -11,10 +14,15 @@ import org.junit.After;
 * @since <pre>May 11, 2020</pre>
 * @version 1.0
 */
+
+
 public class ActorTest {
 
 @Before
 public void before() throws Exception {
+  ArrayList<Actor> actorArrayList = new ArrayList<>();
+
+
 }
 
 @After
@@ -28,7 +36,6 @@ public void after() throws Exception {
 */
 @Test
 public void testGetPosX() throws Exception {
-//TODO: Test goes here...
 }
 
 /**
@@ -38,7 +45,7 @@ public void testGetPosX() throws Exception {
 */
 @Test
 public void testSetPosX() throws Exception {
-//TODO: Test goes here...
+
 }
 
 /**

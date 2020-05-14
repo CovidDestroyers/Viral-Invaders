@@ -36,16 +36,19 @@ public class Shot extends Actor {
 
 
 
-  public void moveShot() {
+  public boolean moveShot() {
     if (isMoveUp()) {
       moveShotUp();
     }
+    return moveUp;
   }
 
-  private  void moveShotUp() {
+  int moveShotUp() {
     int shotY = getPosY();
     int yMinusSpeed = shotY - actorSpeed;
     setPosY(yMinusSpeed);
+
+    return getPosY();
   }
 
 }
