@@ -80,6 +80,22 @@ public class Board extends JPanel implements Runnable {
       }
     }
 
+    //Shots creation
+    // Check shot array if isMoveUp
+    // get current shots posY
+    // subtract the speed
+    // set to new current posY
+
+    // re-render all shots
+    // go through shot array
+    // set color
+    // fill rect with shot posX and shotPosY, 3, 7
+
+
+    // Virus Army
+    virusArmy.addArmyToBoard(graphics, Color.GREEN);
+    virusArmy.moveArmy();
+
     // Player/Ship creation
     player.addToBoard(graphics);
     player.movePlayer();
