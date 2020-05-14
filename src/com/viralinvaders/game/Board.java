@@ -5,7 +5,9 @@ import com.viralinvaders.actors.Shot;
 import com.viralinvaders.actors.VirusArmy;
 
 import javax.swing.JPanel;
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Color;
+import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -21,7 +23,6 @@ public class Board extends JPanel implements Runnable {
   private Thread animator;
   private final Player player;
   private final VirusArmy virusArmy;
-  private Shot shot;
 
 
   /*
@@ -56,51 +57,31 @@ public class Board extends JPanel implements Runnable {
   @Override
   public void paint(Graphics graphics) {
     super.paint(graphics);
-    player.addToBoard(graphics);
 
-    //Virus Army Creation
-    virusArmy.addArmyToBoard(graphics);
-    virusArmy.moveArmy();
-
-    // Shot Creation
+    // Shot
     if (!Shot.SHOT_ARRAY_LIST.isEmpty()){
-      for (Shot shots: Shot.SHOT_ARRAY_LIST){
-
-        if (shots.isMoveUp()){
-          shots.addShotToBoard(graphics, Color.white);
-          shots.moveShot();
+      for (int i = 0; i < Shot.SHOT_ARRAY_LIST.size(); i++){
+        Shot shot = Shot.SHOT_ARRAY_LIST.get(i);
+        if (shot.isMoveUp()){
+          shot.addShotToBoard(graphics, Color.white);
+          shot.moveShot();
         }
         else{
-          // TODO: This will throw a ConcurrentModificationException. So need to rethink this just a little bit
-          Shot.SHOT_ARRAY_LIST.remove(shots);
+          Shot.SHOT_ARRAY_LIST.remove(shot);
         }
         virusArmy.checkArmyForHits(shot);
       }
     }
 
-    //Shots creation
-    // Check shot array if isMoveUp
-    // get current shots posY
-    // subtract the speed
-    // set to new current posY
-
-    // re-render all shots
-    // go through shot array
-    // set color
-    // fill rect with shot posX and shotPosY, 3, 7
-
-
-    // Virus Army
-    virusArmy.addArmyToBoard(graphics, Color.GREEN);
+    player.addToBoard(graphics);
+    virusArmy.addArmyToBoard(graphics);
     virusArmy.moveArmy();
-
-    // Player/Ship creation
     player.movePlayer();
 
-    // Keeps all the graphics synced
     Toolkit.getDefaultToolkit().sync();
     graphics.dispose();
   }
+
 
   @Override
   public void run() {
@@ -179,8 +160,6 @@ public class Board extends JPanel implements Runnable {
       super.keyPressed(event);
       int key = event.getKeyCode();
 
-      System.out.println(event.getKeyCode() + " " + event.getKeyChar());
-
       if (key == 39) {
         player.setMoveRight(true);
       }
@@ -190,13 +169,12 @@ public class Board extends JPanel implements Runnable {
       }
 
       if (key == 32) {
-        shot = new Shot(player.getPosX(), player.getPosY(), 5);
-        shot.setMoveUp(true);
-        Shot.SHOT_ARRAY_LIST.add(shot);
+        Shot newShot = new Shot(player.getPosX(), player.getPosY(), 5);
+        newShot.setMoveUp(true);
+        Shot.SHOT_ARRAY_LIST.add(newShot);
       }
     }
   }
-
 }
 
 

@@ -32,8 +32,8 @@ public class Virus extends Actor {
 
   public void checkVirusWasHit(Shot shot) {
     if (getBounds().intersects(shot.getBounds())) {
-      System.out.println("You were hit");
       setReadyForRemoval(true);
+      shot.setMoveUp(false);
     }
   }
 

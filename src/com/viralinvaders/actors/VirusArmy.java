@@ -1,10 +1,8 @@
 package com.viralinvaders.actors;
 
 import java.awt.Graphics;
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.ConcurrentModificationException;
 
 public class VirusArmy {
   private ArrayList<Virus> virusArmy = new ArrayList<>();
@@ -18,7 +16,6 @@ public class VirusArmy {
   public VirusArmy() {
     createVirusArmy();
   }
-
 
   /*
    * =============================================
