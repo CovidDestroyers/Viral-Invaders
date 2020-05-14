@@ -1,7 +1,11 @@
 package com.viralinvaders.actors;
 
+import com.viralinvaders.actors.Player;
+
 import org.junit.Before;
 import org.junit.Test;
+
+import java.awt.*;
 
 import static org.junit.Assert.*;
 
@@ -20,10 +24,21 @@ public class ActorTest {
   }
 
   @Test
-  public void moveActorLeft() {
+  public void testMoveActorLeft() {
+    player.moveActorLeft();
+    assertEquals(245, player.getPosX());
   }
 
   @Test
-  public void getBounds() {
+  public void testGetBounds() {
+    player.setWidth(45);
+    player.setHeight(75);
+
+    Rectangle playerBounds = player.getBounds();
+
+    assertEquals(250, playerBounds.getX(), .001);
+    assertEquals(250, playerBounds.getY(), .001);
+    assertEquals(45, playerBounds.getWidth(), .001);
+    assertEquals(75, playerBounds.getHeight(), .001);
   }
 }
