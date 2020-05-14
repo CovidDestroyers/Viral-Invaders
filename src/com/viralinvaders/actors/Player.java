@@ -5,9 +5,6 @@ import java.awt.Color;
 
 public class Player extends Actor {
 
-  private boolean moveRight;
-  private boolean moveLeft;
-
   /*
    * =============================================
    * ============= Constructor ==================
@@ -26,7 +23,7 @@ public class Player extends Actor {
    * =============================================
    */
 
-  public void addPlayerToBoard(Graphics graphics) {
+  public void addToBoard(Graphics graphics) {
     graphics.setColor(Color.RED);
     graphics.fillRect(getPosX(), getPosY(), 20, 20);
   }
@@ -62,26 +59,6 @@ public class Player extends Actor {
    * =============================================
    */
 
-  // SET METHODS
-
-  public void setMoveLeft(boolean moveLeft) {
-    this.moveLeft = moveLeft;
-  }
-
-
-  public void setMoveRight(boolean moveRight) {
-    this.moveRight = moveRight;
-  }
-
-
-  // GET METHODS
-  public boolean isMoveLeft() {
-    return moveLeft;
-  }
-
-  public boolean isMoveRight() {
-    return moveRight;
-  }
 
   /*
    * =============================================
@@ -102,4 +79,29 @@ public class Player extends Actor {
     this.setPosX(xMinusSpeed);
   }
 
+
+  @Override
+  public String toString() {
+    return "Player{" +
+           "width=" + width +
+           ", height=" + height +
+           ", posX=" + posX +
+           ", posY=" + posY +
+           ", actorSpeed=" + actorSpeed +
+           ", moveRight=" + moveRight +
+           ", moveLeft=" + moveLeft +
+           ", moveUp=" + moveUp +
+           ", color=" + color +
+           ", moveRight=" + isMoveRight() +
+           ", moveLeft=" + isMoveLeft() +
+           ", color=" + getColor() +
+           ", readyForRemoval=" + isReadyForRemoval() +
+           ", width=" + getWidth() +
+           ", height=" + getHeight() +
+           ", actorSpeed=" + getActorSpeed() +
+           ", posY=" + getPosY() +
+           ", posX=" + getPosX() +
+           ", moveUp=" + isMoveUp() +
+           '}';
+  }
 }

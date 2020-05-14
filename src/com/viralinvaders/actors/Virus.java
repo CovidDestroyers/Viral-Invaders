@@ -68,4 +68,15 @@ public class Virus extends Actor {
   public boolean isVisible() {
     return isVisible;
   }
+
+
+  @Override
+  public String toString() {
+    return "Virus{" +
+           "moveRight=" + moveRight +
+           ", moveLeft=" + moveLeft +
+           ", isVisible=" + isVisible +
+           ", visible=" + isVisible() +
+           "} " + super.toString();
+  }
 }

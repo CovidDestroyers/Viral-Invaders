@@ -3,7 +3,7 @@ package com.viralinvaders.actors;
 import java.awt.Graphics;
 import java.awt.Color;
 
-public class Actor {
+public abstract class Actor {
 
   protected int width;
   protected int height;
@@ -13,6 +13,7 @@ public class Actor {
 
   protected boolean moveRight;
   protected boolean moveLeft;
+  protected boolean moveUp;
   protected Color color;
 
   private boolean readyForRemoval;
@@ -62,9 +63,19 @@ public class Actor {
   }
 
 
-  // public void moveActor() {
-  //   if ()
-  // }
+  protected void moveActorRight() {
+    int currentXPos = this.getPosX();
+    int xPlusSpeed = currentXPos + this.getActorSpeed();
+
+    this.setPosX(xPlusSpeed);
+  }
+
+  protected void moveActorLeft() {
+    int currentXPos = this.getPosX();
+    int xMinusSpeed = currentXPos- this.getActorSpeed();
+
+    this.setPosX(xMinusSpeed);
+  }
 
 
 
@@ -113,6 +124,10 @@ public class Actor {
     this.moveRight = moveRight;
   }
 
+  public void setMoveUp(boolean moveUp) {
+    this.moveUp = moveUp;
+  }
+
 
   // GET METHODS
   public boolean isMoveRight() {
@@ -151,19 +166,23 @@ public class Actor {
     return posX;
   }
 
+  public boolean isMoveUp() {
+    return moveUp;
+  }
 
 
-
-  @Override
-  public String toString() {
+  @Override public String toString() {
     return "Actor{" +
            "width=" + width +
            ", height=" + height +
            ", posX=" + posX +
            ", posY=" + posY +
            ", actorSpeed=" + actorSpeed +
+           ", moveRight=" + moveRight +
+           ", moveLeft=" + moveLeft +
+           ", moveUp=" + moveUp +
            ", color=" + color +
-           ", setForRemoval=" + readyForRemoval +
+           ", readyForRemoval=" + readyForRemoval +
            '}';
   }
 }
