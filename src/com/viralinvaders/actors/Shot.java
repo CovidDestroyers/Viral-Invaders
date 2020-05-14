@@ -35,8 +35,6 @@ public class Shot extends Actor {
    * =============================================
    */
 
-
-
   public void addShotToBoard(Graphics graphics, Color color) {
     for (Shot shot : SHOT_ARRAY_LIST) {
       graphics.setColor(color);
