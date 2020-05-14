@@ -1,12 +1,8 @@
 package com.viralinvaders.game;
 
-import com.viralinvaders.actors.Actor;
-import com.viralinvaders.actors.Shot;
-
 import javax.swing.JFrame;
 
 public class Starter extends JFrame {
-
 
   public Starter() {
     add(new Board());
@@ -22,6 +18,5 @@ public class Starter extends JFrame {
   public static void main(String[] args) {
     new Starter();
   }
-
 
 }

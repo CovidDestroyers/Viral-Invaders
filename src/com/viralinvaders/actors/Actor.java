@@ -1,7 +1,6 @@
 package com.viralinvaders.actors;
 
-import java.awt.Graphics;
-import java.awt.Color;
+import java.awt.*;
 
 public abstract class Actor {
 
@@ -17,7 +16,6 @@ public abstract class Actor {
   protected Color color;
 
   private boolean readyForRemoval;
-
 
 
   /*
@@ -77,6 +75,9 @@ public abstract class Actor {
     this.setPosX(xMinusSpeed);
   }
 
+  public Rectangle getBounds() {
+    return new Rectangle(getPosX(),getPosY(),getWidth(), getHeight());
+  }
 
 
   /*
@@ -171,7 +172,8 @@ public abstract class Actor {
   }
 
 
-  @Override public String toString() {
+  @Override
+  public String toString() {
     return "Actor{" +
            "width=" + width +
            ", height=" + height +
@@ -183,6 +185,7 @@ public abstract class Actor {
            ", moveUp=" + moveUp +
            ", color=" + color +
            ", readyForRemoval=" + readyForRemoval +
+           ", bounds=" + getBounds() +
            '}';
   }
 }

@@ -8,58 +8,88 @@ import org.junit.After;
 * Player Tester.
 *
 * @author <Authors name>
-* @since <pre>May 11, 2020</pre>
+* @since <pre>May 14, 2020</pre>
 * @version 1.0
 */
 public class PlayerTest {
 
 @Before
-public void before() throws Exception {
+public void before() {
 }
 
 @After
-public void after() throws Exception {
+public void after() {
 }
 
 /**
 *
-* Method: setMoveLeft(boolean moveLeft)
+* Method: addToBoard(Graphics graphics)
 *
 */
 @Test
-public void testSetMoveLeft() throws Exception {
+public void testAddToBoard() {
 //TODO: Test goes here...
 }
 
 /**
 *
-* Method: setMoveRight(boolean moveRight)
+* Method: movePlayer()
 *
 */
 @Test
-public void testSetMoveRight() throws Exception {
+public void testMovePlayer() {
 //TODO: Test goes here...
 }
 
 /**
 *
-* Method: isMoveLeft()
+* Method: toString()
 *
 */
 @Test
-public void testIsMoveLeft() throws Exception {
+public void testToString() {
 //TODO: Test goes here...
+}
+
+
+/**
+*
+* Method: movePlayerRight()
+*
+*/
+@Test
+public void testMovePlayerRight() {
+//TODO: Test goes here...
+/*
+try {
+   Method method = Player.getClass().getMethod("movePlayerRight");
+   method.setAccessible(true);
+   method.invoke(<Object>, <Parameters>);
+} catch(NoSuchMethodException e) {
+} catch(IllegalAccessException e) {
+} catch(InvocationTargetException e) {
+}
+*/
 }
 
 /**
 *
-* Method: isMoveRight()
+* Method: movePlayerLeft()
 *
 */
 @Test
-public void testIsMoveRight() throws Exception {
+public void testMovePlayerLeft() {
 //TODO: Test goes here...
+/*
+try {
+   Method method = Player.getClass().getMethod("movePlayerLeft");
+   method.setAccessible(true);
+   method.invoke(<Object>, <Parameters>);
+} catch(NoSuchMethodException e) {
+} catch(IllegalAccessException e) {
+} catch(InvocationTargetException e) {
 }
-
+*/
+}
 
 }
