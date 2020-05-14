@@ -101,7 +101,7 @@ public class Board extends JPanel implements Runnable {
     // go through shot array
     // set color
     // fill rect with shot posX and shotPosY, 3, 7
-    
+
 
     // Virus Army
     virusArmy.addArmyToBoard(graphics, Color.GREEN);
@@ -193,7 +193,7 @@ public class Board extends JPanel implements Runnable {
 
       player.setMoveRight(false);
       player.setMoveLeft(false);
-      shot.setMoveUp(true);
+//      shot.setMoveUp(true);
     }
 
     @Override
