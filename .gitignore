@@ -131,5 +131,4 @@ Temporary Items
 .idea/misc.xml
 #*.xml
 .idea/description.html
-
-*.iml
+/Viral Invaders.iml

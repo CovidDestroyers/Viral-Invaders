@@ -1,125 +1,29 @@
 package com.viralinvaders.actors;
 
-import org.junit.Test;
 import org.junit.Before;
-import org.junit.After;
+import org.junit.Test;
 
-/**
-* Actor Tester.
-*
-* @author <Authors name>
-* @since <pre>May 11, 2020</pre>
-* @version 1.0
-*/
+import static org.junit.Assert.*;
+
 public class ActorTest {
+  Player player;
 
-@Before
-public void before() throws Exception {
-}
+  @Before
+  public void setUp() throws Exception {
+    player = new Player(250, 250, 5);
+  }
 
-@After
-public void after() throws Exception {
-}
+  @Test
+  public void testMoveActorRight() {
+    player.moveActorRight();
+    assertEquals(255, player.getPosX());
+  }
 
-/**
-*
-* Method: getPosX()
-*
-*/
-@Test
-public void testGetPosX() throws Exception {
-//TODO: Test goes here...
-}
+  @Test
+  public void moveActorLeft() {
+  }
 
-/**
-*
-* Method: setPosX(int posX)
-*
-*/
-@Test
-public void testSetPosX() throws Exception {
-//TODO: Test goes here...
-}
-
-/**
-*
-* Method: getPosY()
-*
-*/
-@Test
-public void testGetPosY() throws Exception {
-//TODO: Test goes here...
-}
-
-/**
-*
-* Method: setPosY(int posY)
-*
-*/
-@Test
-public void testSetPosY() throws Exception {
-//TODO: Test goes here...
-}
-
-/**
-*
-* Method: getActorSpeed()
-*
-*/
-@Test
-public void testGetActorSpeed() throws Exception {
-//TODO: Test goes here...
-}
-
-/**
-*
-* Method: setActorSpeed(int actorSpeed)
-*
-*/
-@Test
-public void testSetActorSpeed() throws Exception {
-//TODO: Test goes here...
-}
-
-/**
-*
-* Method: getHeight()
-*
-*/
-@Test
-public void testGetHeight() throws Exception {
-//TODO: Test goes here...
-}
-
-/**
-*
-* Method: setHeight(int height)
-*
-*/
-@Test
-public void testSetHeight() throws Exception {
-//TODO: Test goes here...
-}
-
-/**
-*
-* Method: getWidth()
-*
-*/
-@Test
-public void testGetWidth() throws Exception {
-//TODO: Test goes here...
-}
-
-/**
-*
-* Method: setWidth(int width)
-*
-*/
-@Test
-public void testSetWidth() throws Exception {
-//TODO: Test goes here...
-}
-
-
+  @Test
+  public void getBounds() {
+  }
 }
