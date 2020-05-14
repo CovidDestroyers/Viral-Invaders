@@ -1,6 +1,5 @@
 package com.viralinvaders.game;
 
-import com.viralinvaders.actors.Actor;
 import com.viralinvaders.actors.Player;
 import com.viralinvaders.actors.Shot;
 import com.viralinvaders.actors.VirusArmy;
@@ -9,15 +8,13 @@ import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.Collection;
+
 
 
 public class Board extends JPanel implements Runnable {
   public static final int BOARD_WIDTH = 500;
   public static final int BOARD_HEIGHT = 500;
 
-  private boolean inGame = true;
   private int posX = 0;
   private int posY = 0;
 
@@ -44,7 +41,7 @@ public class Board extends JPanel implements Runnable {
     setBackground(Color.BLACK);
     setDoubleBuffered(true);
 
-    if (getAnimator() == null || !inGame) {
+    if (getAnimator() == null) {
       setAnimator(new Thread(this));
       getAnimator().start();
     }
@@ -113,10 +110,6 @@ public class Board extends JPanel implements Runnable {
    * =============================================
    */
 
-  public void setInGame(boolean inGame) {
-    this.inGame = inGame;
-  }
-
   public void setPosX(int posX) {
     this.posX = posX;
   }
@@ -135,11 +128,6 @@ public class Board extends JPanel implements Runnable {
    * =========== Getter Methods ==================
    * =============================================
    */
-
-  public boolean isInGame() {
-    return inGame;
-  }
-
   public int getPosX() {
     return posX;
   }
