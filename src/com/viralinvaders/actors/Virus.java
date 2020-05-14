@@ -45,7 +45,8 @@ public class Virus extends Actor {
            ", height=" + height +
            ", posX=" + posX +
            ", posY=" + posY +
-           ", actorSpeed=" + actorSpeed +
+           ", " +
+           "actorSpeed=" + actorSpeed +
            ", moveRight=" + moveRight +
            ", moveLeft=" + moveLeft +
            ", moveUp=" + moveUp +

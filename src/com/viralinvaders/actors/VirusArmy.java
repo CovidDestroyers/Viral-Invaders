@@ -58,9 +58,6 @@ public class VirusArmy {
 
   public void moveArmy() {
     for (Virus virus : virusArmy) {
-      int virusLocationXaxis = virus.getPosX();
-      int virusSpeed = virus.getActorSpeed();
-
       if (virus.isMoveRight()) {
         virus.moveActorRight();
       }
@@ -118,5 +115,14 @@ public class VirusArmy {
 
   public Collection<? extends Actor> getArmy() {
     return virusArmy;
+  }
+
+
+  @Override
+  public String toString() {
+    return "VirusArmy{" +
+           "virusArmy=" + getArmy() +
+           ", size=" + size() +
+           '}';
   }
 }

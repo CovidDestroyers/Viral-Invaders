@@ -49,4 +49,30 @@ public class Shot extends Actor {
     setPosY(yMinusSpeed);
   }
 
+
+  public String toString() {
+    return "Shot{" +
+           "width=" + width +
+           ", height=" + height +
+           ", posX=" + posX +
+           ", posY=" + posY +
+           ", actorSpeed=" + actorSpeed +
+           ", moveRight=" + moveRight +
+           ", moveLeft=" + moveLeft +
+           ", moveUp=" + moveUp +
+           ", color=" + color +
+           ", SHOT_ARRAY_LIST=" + SHOT_ARRAY_LIST +
+           ", bounds=" + getBounds() +
+           ", moveRight=" + isMoveRight() +
+           ", moveLeft=" + isMoveLeft() +
+           ", color=" + getColor() +
+           ", readyForRemoval=" + isReadyForRemoval() +
+           ", width=" + getWidth() +
+           ", height=" + getHeight() +
+           ", actorSpeed=" + getActorSpeed() +
+           ", posY=" + getPosY() +
+           ", posX=" + getPosX() +
+           ", moveUp=" + isMoveUp() +
+           '}';
+  }
 }

@@ -12,18 +12,13 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 
-
 public class Board extends JPanel implements Runnable {
   public static final int BOARD_WIDTH = 500;
   public static final int BOARD_HEIGHT = 500;
 
-  private int posX = 0;
-  private int posY = 0;
-
   private Thread animator;
   private final Player player;
   private final VirusArmy virusArmy;
-
 
   /*
    * =============================================
@@ -33,12 +28,8 @@ public class Board extends JPanel implements Runnable {
   public Board() {
     player = new Player((BOARD_WIDTH / 2), (BOARD_HEIGHT / 2) + 200, 5);
     virusArmy = new VirusArmy();
-
-
-
     addKeyListener(new WatchMyKeys());
     setFocusable(true);
-    // setDimension(new Dimension(BOARD_WIDTH, BOARD_HEIGHT));
     setBackground(Color.BLACK);
     setDoubleBuffered(true);
 
@@ -103,34 +94,11 @@ public class Board extends JPanel implements Runnable {
 
   /*
    * =============================================
-   * =========== Setter Methods ==================
+   * =========== Accessor Methods ==================
    * =============================================
    */
-
-  public void setPosX(int posX) {
-    this.posX = posX;
-  }
-
-  public void setPosY(int posY) {
-    this.posY = posY;
-  }
-
   public void setAnimator(Thread animator) {
     this.animator = animator;
-  }
-
-
-  /*
-   * =============================================
-   * =========== Getter Methods ==================
-   * =============================================
-   */
-  public int getPosX() {
-    return posX;
-  }
-
-  public int getPosY() {
-    return posY;
   }
 
   public Thread getAnimator() {
