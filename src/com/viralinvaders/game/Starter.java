@@ -1,5 +1,8 @@
 package com.viralinvaders.game;
 
+import com.viralinvaders.actors.Actor;
+import com.viralinvaders.actors.Shot;
+
 import javax.swing.JFrame;
 
 public class Starter extends JFrame {
